@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bezma Studio</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="home-page is-loading">
+
+  <!-- MENÚ -->
+  <header>
+    <nav class="menu menu-overlay">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="about.html">Sobre mí</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- ================================================== -->
+  <!-- HOME / SLIDESHOW                                   -->
+  <!-- Agrega aquí tus fotos de portada (3 recomendadas) -->
+  <!-- Formato ideal: horizontal, mínimo 1920×1080px     -->
+  <!-- ================================================== -->
+  <section id="home" class="slideshow-section dark-section">
+    <div class="slideshow">
+
+      <img src="images/slide1.jpg" class="active" alt="Slide 1" crossorigin="anonymous">
+      <!-- ↑ IMAGEN 1 — reemplaza "slide1.jpg" con tu nombre de archivo -->
+
+      <img src="images/slide2.jpg" alt="Slide 2" crossorigin="anonymous">
+      <!-- ↑ IMAGEN 2 — reemplaza "slide2.jpg" con tu nombre de archivo -->
+
+      <img src="images/slide3.jpg" alt="Slide 3" crossorigin="anonymous">
+      <!-- ↑ IMAGEN 3 — reemplaza "slide3.jpg" con tu nombre de archivo -->
+
+    </div>
+
+    <div class="hero-text adaptive-text dark">
+      <h1>Bezma Studio</h1>
+      <p>Portrait & Fashion Photography</p>
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- BOOKS                                              -->
+  <!-- Cada .book tiene: imagen, título, precio, desc.    -->
+  <!-- ================================================== -->
+  <section id="books">
+    <h2>Books</h2>
+    <div class="books-grid">
+
+      <!-- BOOK 1 -->
+      <div class="book"
+           data-title="Book Essential"
+           data-price="$100 USD"
+           data-description="Sesión de retrato clásico y minimalista. Incluye 10 fotografías editadas en alta resolución.">
+        <img src="images/book1.jpg" alt="Book Essential">
+        <!-- ↑ reemplaza "book1.jpg" con tu nombre de archivo -->
+        <h3>Book Essential</h3>
+        <p>Desde $100</p>
+        <button class="details-btn">Ver detalles</button>
+      </div>
+
+      <!-- BOOK 2 -->
+      <div class="book"
+           data-title="Book Editorial"
+           data-price="$200 USD"
+           data-description="Fotografía de moda estilo revista con dirección artística. Incluye 20 fotografías editadas y entrega digital.">
+        <img src="images/book2.jpg" alt="Book Editorial">
+        <!-- ↑ reemplaza "book2.jpg" con tu nombre de archivo -->
+        <h3>Book Editorial</h3>
+        <p>Desde $200</p>
+        <button class="details-btn">Ver detalles</button>
+      </div>
+
+      <!-- BOOK 3 -->
+      <div class="book"
+           data-title="Book Premium"
+           data-price="$300 USD"
+           data-description="Producción completa con estilismo, maquillaje y edición avanzada. Incluye 30 fotografías y álbum impreso.">
+        <img src="images/book3.jpg" alt="Book Premium">
+        <!-- ↑ reemplaza "book3.jpg" con tu nombre de archivo -->
+        <h3>Book Premium</h3>
+        <p>Desde $300</p>
+        <button class="details-btn">Ver detalles</button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- EDITORIAL — CARRUSEL                               -->
+  <!-- Agrega las imágenes del carrusel abajo             -->
+  <!-- Formato ideal: vertical o cuadrado, mín 800×600px -->
+  <!-- ================================================== -->
+  <section class="editorial-section" id="editorial">
+    <h2 class="section-title">Editorial</h2>
+    <div class="editorial-wrapper">
+      <div class="editorial-track">
+
+        <a href="editorial-1.html" class="editorial-card" target="_blank" rel="noopener">
+          <img src="images/editorial1.jpg" alt="Editorial 1">
+          <!-- ↑ reemplaza "editorial1.jpg" con la foto de portada de esta editorial -->
+        </a>
+
+        <a href="editorial-2.html" class="editorial-card" target="_blank" rel="noopener">
+          <img src="images/editorial2.jpg" alt="Editorial 2">
+          <!-- ↑ reemplaza "editorial2.jpg" con la foto de portada de esta editorial -->
+        </a>
+
+        <a href="editorial-3.html" class="editorial-card" target="_blank" rel="noopener">
+          <img src="images/editorial3.jpg" alt="Editorial 3">
+          <!-- ↑ reemplaza "editorial3.jpg" con la foto de portada de esta editorial -->
+        </a>
+
+        <a href="editorial-4.html" class="editorial-card" target="_blank" rel="noopener">
+          <img src="images/editorial4.jpg" alt="Editorial 4">
+          <!-- ↑ reemplaza "editorial4.jpg" con la foto de portada de esta editorial -->
+        </a>
+
+        <!-- Para agregar más editoriales, copia el bloque de arriba -->
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MODAL — no necesitas modificar esto -->
+  <div id="book-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3 id="modal-title"></h3>
+      <p id="modal-price"></p>
+      <p id="modal-description"></p>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer-line">
+    <div class="footer-content">
+      <a href="mailto:BezmaStudio@gmail.com">BezmaStudio@gmail.com</a>
+      <span>Santiago de Chile, Providencia</span>
+      <a href="https://www.instagram.com/edo.bezma_ph/" target="_blank" rel="noopener">IG: @Edo.Bezma_PH</a>
+    </div>
+  </footer>
+
+
+  <!-- JS — orden importa -->
+  <script src="js/menu.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/editorial.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/pagetransitions.js"></script>
+
+</body>
+</html>

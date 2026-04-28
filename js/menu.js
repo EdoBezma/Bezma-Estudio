@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const menu = document.querySelector('.menu');
   if (!menu) return;
 
-  const isHome    = document.body.classList.contains('home-page');
-  const isInner   = document.body.classList.contains('about-page') ||
-                    document.body.classList.contains('contact-page');
+  const isHome  = document.body.classList.contains('home-page');
+  const isInner = document.body.classList.contains('about-page') ||
+                  document.body.classList.contains('contact-page');
 
 
   /* ============================================================
@@ -44,10 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    /* Un único listener de scroll */
     window.addEventListener('scroll', updateMenuStyle, { passive: true });
-
-    /* Ejecutar también al cargar (espera imágenes para calcular alturas correctas) */
     window.addEventListener('load', updateMenuStyle);
     updateMenuStyle();
   }
@@ -57,12 +54,25 @@ document.addEventListener('DOMContentLoaded', () => {
      Scroll suave para enlaces internos (#sección)
      ============================================================ */
 
+  const MENU_HEIGHT = 56; // altura del menú fijo en px
+
   document.querySelectorAll('.menu a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
+      const targetId = link.getAttribute('href').substring(1);
+      const target   = document.getElementById(targetId);
       if (!target) return;
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      if (targetId === 'books') {
+        /* Scroll especial para Books:
+           Queremos que el título "Books" quede visible justo
+           debajo del menú y la card Polas centrada en pantalla.
+           offsetTop del section - menú - pequeño margen visual */
+        const scrollTo = target.offsetTop - MENU_HEIGHT + 165;
+        window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+      } else {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   });
 

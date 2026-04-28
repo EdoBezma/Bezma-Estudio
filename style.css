@@ -194,7 +194,7 @@ section {
 .book img {
   width: 100%;
   height: auto;
-  max-height: 520px;
+  aspect-ratio: 9 / 16; /* proporción vertical 1080×1920 */
   object-fit: cover;
   transition: transform var(--transition-base);
   cursor: pointer;
@@ -565,4 +565,101 @@ footer.footer-line a:hover {
   .modal-content {
     padding: 36px 24px;
   }
+}
+
+
+/* ============================================================
+   MODAL — lista de descripción
+   ============================================================ */
+
+#modal-description ul {
+  list-style: none;
+  margin-top: 8px;
+}
+
+#modal-description ul li {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-muted);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding-left: 16px;
+  position: relative;
+}
+
+#modal-description ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: #bbb;
+}
+
+
+/* ============================================================
+   MODAL — botón Agendar (WhatsApp)
+   ============================================================ */
+
+.whatsapp-btn {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 12px 32px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-bg);
+  background: var(--color-text);
+  border: 1px solid var(--color-text);
+  transition: background 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.whatsapp-btn:hover {
+  background: transparent;
+  color: var(--color-text);
+}
+
+
+/* ============================================================
+   BOOKS — card Polas centrada arriba
+   ============================================================ */
+
+.books-grid--top {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.books-grid--top .book {
+  width: 100%;
+  max-width: 340px;
+}
+
+
+/* ============================================================
+   MODAL — aparición suave
+   ============================================================ */
+
+.modal {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.modal.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content {
+  transform: translateY(18px);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+  opacity: 0;
+}
+
+.modal.is-open .modal-content {
+  transform: translateY(0);
+  opacity: 1;
 }

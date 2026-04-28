@@ -14,22 +14,34 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a').forEach(link => {
     const href = link.getAttribute('href');
 
-    /* Ignorar: anclas, externos, target="_blank", vacíos */
-    if (!href || href.startsWith('#') || href.startsWith('mailto:') ||
-        link.hostname !== window.location.hostname ||
-        link.hasAttribute('target')) {
+    /* Ignorar:
+       - anclas (#)
+       - mailto / tel
+       - enlaces de WhatsApp
+       - enlaces externos
+       - target="_blank"
+       - el botón Agendar del modal
+    */
+    if (
+      !href ||
+      href.startsWith('#') ||
+      href.startsWith('mailto:') ||
+      href.startsWith('tel:') ||
+      href.startsWith('https://wa.me') ||
+      link.hasAttribute('target') ||
+      link.id === 'modal-whatsapp' ||
+      link.hostname !== window.location.hostname
+    ) {
       return;
     }
 
     link.addEventListener('click', e => {
       e.preventDefault();
       const dest = link.href;
-
       document.body.classList.add('fade-out');
-
       setTimeout(() => {
         window.location.href = dest;
-      }, 500); // debe coincidir con transition: opacity 0.5s en body
+      }, 500);
     });
   });
 

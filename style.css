@@ -370,13 +370,56 @@ section {
    8. ABOUT
    ============================================================ */
 
+/* Desktop: página estática sin scroll */
+body.about-page {
+  overflow: hidden;
+  height: 100vh;
+}
+
 .about-section {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 120px 8% 80px;
   box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Móvil: scroll libre, todo visible */
+@media screen and (max-width: 600px) {
+  body.about-page {
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .about-section {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    padding: 100px 6% 40px;
+  }
+
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .about-image img {
+    width: 160px;
+  }
+
+  .about-text h2 {
+    font-size: 26px;
+    margin-bottom: 14px;
+  }
+
+  .about-text p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
 }
 
 .about-container {

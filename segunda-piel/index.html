@@ -3,356 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- ============================================================ -->
-  <!-- EDITA AQUÍ: cambia el título de la editorial                 -->
-  <!-- ============================================================ -->
   <title>Segunda Piel | Bezma Studio</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
-
   <style>
-
-    /* ============================================================
-       RESET & BASE
-       ============================================================ */
-
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --color-bg:    #ffffff;
-      --color-text:  #111111;
-      --color-muted: #888888;
-      --font-display:'Playfair Display', serif;
-      --font-body:   'Inter', sans-serif;
-    }
-
-    html, body {
-      background: var(--color-bg);
-      color: var(--color-text);
-      font-family: var(--font-body);
-      min-height: 100vh;
-    }
-
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --color-bg: #ffffff; --color-text: #111111; --color-muted: #888888; --font-display:'Playfair Display', serif; --font-body: 'Inter', sans-serif; }
+    html, body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); min-height: 100vh; }
     body.is-loading { opacity: 0; }
     body { opacity: 1; transition: opacity 0.5s ease; }
-
-
-    /* ============================================================
-       MENÚ
-       ============================================================ */
-
-    .menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 28px 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .menu-brand {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 400;
-      letter-spacing: 1px;
-      text-decoration: none;
-      color: var(--color-text);
-    }
-
-    .menu-back {
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--color-muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: color 0.3s ease;
-    }
-
+    .menu { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 28px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .menu-brand { font-family: var(--font-display); font-size: 18px; font-weight: 400; letter-spacing: 1px; text-decoration: none; color: var(--color-text); }
+    .menu-back { font-family: var(--font-body); font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; color: var(--color-muted); display: flex; align-items: center; gap: 8px; transition: color 0.3s ease; }
     .menu-back:hover { color: var(--color-text); }
-
-    .menu-back::before {
-      content: '←';
-      font-size: 14px;
-    }
-
-
-    /* ============================================================
-       HEADER EDITORIAL
-       ============================================================ */
-
-    .editorial-header {
-      padding: 140px 5% 60px;
-      text-align: center;
-    }
-
-    .editorial-header h1 {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 5vw, 56px);
-      font-weight: 400;
-      letter-spacing: 2px;
-      margin-bottom: 14px;
-    }
-
-    .editorial-header p {
-      font-family: var(--font-body);
-      font-size: 12px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--color-muted);
-    }
-
-
-    /* ============================================================
-       GRILLA MASONRY
-       Columnas CSS puras — sin JS, responsive automático
-       ============================================================ */
-
-    .photo-grid {
-      columns: 3;
-      column-gap: 6px;
-      padding: 0 5% 80px;
-    }
-
-    .photo-item {
-      break-inside: avoid;
-      margin-bottom: 6px;
-      overflow: hidden;
-      cursor: pointer;
-      position: relative;
-      display: block;
-    }
-
-    .photo-item img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.6s ease, filter 0.4s ease;
-    }
-
-    .photo-item:hover img {
-      transform: scale(1.03);
-      filter: brightness(0.92);
-    }
-
-    /* Responsive columnas */
-    @media (max-width: 900px) {
-      .photo-grid { columns: 2; }
-    }
-
-    @media (max-width: 500px) {
-      .photo-grid { columns: 1; column-gap: 0; padding: 0 0 60px; }
-      .photo-item { margin-bottom: 4px; }
-    }
-
-
-    /* ============================================================
-       LIGHTBOX
-       ============================================================ */
-
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: rgba(0,0,0,0.96);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .lightbox.active {
-      display: flex;
-    }
-
-    .lightbox-img {
-      max-width: 90vw;
-      max-height: 90vh;
-      object-fit: contain;
-      display: block;
-      opacity: 0;
-      transform: scale(0.97);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .lightbox-img.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* Botón cerrar */
-    .lightbox-close {
-      position: fixed;
-      top: 24px;
-      right: 30px;
-      color: rgba(255,255,255,0.7);
-      font-size: 28px;
-      font-weight: 300;
-      cursor: pointer;
-      line-height: 1;
-      transition: color 0.2s ease;
-      z-index: 10000;
-      background: none;
-      border: none;
-      font-family: var(--font-body);
-    }
-
+    .menu-back::before { content: '←'; font-size: 14px; }
+    .editorial-header { padding: 140px 5% 60px; text-align: center; }
+    .editorial-header h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 56px); font-weight: 400; letter-spacing: 2px; margin-bottom: 14px; }
+    .editorial-header p { font-family: var(--font-body); font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--color-muted); }
+    .photo-grid { columns: 3; column-gap: 6px; padding: 0 5% 80px; }
+    .photo-item { break-inside: avoid; margin-bottom: 6px; overflow: hidden; cursor: pointer; position: relative; display: block; }
+    .photo-item img { width: 100%; height: auto; display: block; opacity: 0; transition: opacity 0.6s ease, transform 0.6s ease, filter 0.4s ease; }
+    .photo-item img.loaded { opacity: 1; }
+    .photo-item:hover img { transform: scale(1.03); filter: brightness(0.92); }
+    @media (max-width: 900px) { .photo-grid { columns: 2; } }
+    @media (max-width: 500px) { .photo-grid { columns: 1; column-gap: 0; padding: 0 0 60px; } .photo-item { margin-bottom: 4px; } }
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.96); justify-content: center; align-items: center; }
+    .lightbox.active { display: flex; }
+    .lightbox-img { max-width: 90vw; max-height: 90vh; object-fit: contain; display: block; opacity: 0; transform: scale(0.97); transition: opacity 0.3s ease, transform 0.3s ease; }
+    .lightbox-img.visible { opacity: 1; transform: scale(1); }
+    .lightbox-close { position: fixed; top: 24px; right: 30px; color: rgba(255,255,255,0.7); font-size: 28px; font-weight: 300; cursor: pointer; line-height: 1; transition: color 0.2s ease; z-index: 10000; background: none; border: none; font-family: var(--font-body); }
     .lightbox-close:hover { color: #fff; }
-
-    /* Navegación anterior / siguiente */
-    .lightbox-nav {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: rgba(255,255,255,0.5);
-      font-size: 32px;
-      cursor: pointer;
-      padding: 20px 24px;
-      transition: color 0.2s ease;
-      z-index: 10000;
-      font-family: var(--font-body);
-    }
-
+    .lightbox-nav { position: fixed; top: 50%; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.5); font-size: 32px; cursor: pointer; padding: 20px 24px; transition: color 0.2s ease; z-index: 10000; font-family: var(--font-body); }
     .lightbox-nav:hover { color: #fff; }
     .lightbox-prev { left: 10px; }
     .lightbox-next { right: 10px; }
-
-    /* Contador */
-    .lightbox-counter {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,0.4);
-      font-size: 11px;
-      letter-spacing: 3px;
-      font-family: var(--font-body);
-    }
-
-
-    /* ============================================================
-       FOOTER
-       ============================================================ */
-
-    footer {
-      padding: 24px 5%;
-      text-align: center;
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: var(--color-muted);
-      border-top: 1px solid rgba(0,0,0,0.06);
-    }
-
-    footer a {
-      color: var(--color-muted);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
+    .lightbox-counter { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.4); font-size: 11px; letter-spacing: 3px; font-family: var(--font-body); }
+    footer { padding: 24px 5%; text-align: center; font-size: 11px; letter-spacing: 2px; color: var(--color-muted); border-top: 1px solid rgba(0,0,0,0.06); }
+    footer a { color: var(--color-muted); text-decoration: none; transition: color 0.3s; }
     footer a:hover { color: var(--color-text); }
-
   </style>
 </head>
-
 <body class="is-loading">
-
-  <!-- MENÚ -->
   <nav class="menu">
     <a href="/" class="menu-brand">Bezma Studio</a>
     <a href="/#editorial" class="menu-back">Volver</a>
   </nav>
-
-
-  <!-- ============================================================ -->
-  <!-- HEADER — edita el nombre y subtítulo de la editorial        -->
-  <!-- ============================================================ -->
   <header class="editorial-header">
     <h1>Segunda Piel</h1>
-    <!-- ↑ EDITA: reemplaza con el nombre de esta editorial -->
-
     <p>2025 &nbsp;·&nbsp; Santiago de Chile</p>
-    <!-- ↑ EDITA: año, ciudad, o cualquier dato que quieras mostrar -->
   </header>
-
-
-  <!-- ============================================================ -->
-  <!-- GRILLA DE FOTOS                                              -->
-  <!--                                                              -->
-  <!-- Para agregar fotos: copia un bloque <div class="photo-item"> -->
-  <!-- y cambia el nombre del archivo de imagen.                    -->
-  <!--                                                              -->
-  <!-- Todas las fotos deben estar en: images/editorial-1/         -->
-  <!-- (crea una subcarpeta por editorial para tenerlo ordenado)    -->
-  <!-- ============================================================ -->
-
   <main class="photo-grid" id="photoGrid">
-
-    <div class="photo-item">
-      <img src="/images/editorial-4/foto1.jpg" alt="foto 1">
-      <!-- ↑ reemplaza "foto1.jpg" con tu nombre de archivo -->
-    </div>
-
-    <div class="photo-item">
-      <img src="/images/editorial-4/foto2.jpg" alt="foto 2">
-      <!-- ↑ reemplaza "foto2.jpg" con tu nombre de archivo -->
-    </div>
-
-    <div class="photo-item">
-      <img src="/images/editorial-4/foto3.jpg" alt="foto 3">
-    </div>
-
-    <div class="photo-item">
-      <img src="/images/editorial-4/foto4.jpg" alt="foto 4">
-    </div>
-
-    <div class="photo-item">
-      <img src="/images/editorial-4/foto5.jpg" alt="foto 5">
-    </div>
-
-    <div class="photo-item">
-      <img src="/images/editorial-4/foto6.jpg" alt="foto 6">
-    </div>
-
-    <div class="photo-item">
-      <img src="/images/editorial-4/foto7.jpg" alt="foto 7">
-    </div>
-
-    <div class="photo-item">
-      <img src="/images/editorial-4/foto8.jpg" alt="foto 8">
-    </div>
-
-    <div class="photo-item">
-      <img src="/images/editorial-4/foto9.jpg" alt="foto 9">
-    </div>
-
-
-    <!-- ↓ Para agregar más fotos, copia este bloque y cambia el número -->
-    <!--
-    <div class="photo-item">
-      <img src="/images/editorial-1/foto11.jpg" alt="foto 11">
-    </div>
-    -->
-
+    <div class="photo-item"><img src="/images/editorial-4/foto1.jpg" alt="foto 1"></div>
+    <div class="photo-item"><img src="/images/editorial-4/foto2.jpg" alt="foto 2"></div>
+    <div class="photo-item"><img src="/images/editorial-4/foto3.jpg" alt="foto 3"></div>
+    <div class="photo-item"><img src="/images/editorial-4/foto4.jpg" alt="foto 4"></div>
+    <div class="photo-item"><img src="/images/editorial-4/foto5.jpg" alt="foto 5"></div>
+    <div class="photo-item"><img src="/images/editorial-4/foto6.jpg" alt="foto 6"></div>
+    <div class="photo-item"><img src="/images/editorial-4/foto7.jpg" alt="foto 7"></div>
+    <div class="photo-item"><img src="/images/editorial-4/foto8.jpg" alt="foto 8"></div>
+    <div class="photo-item"><img src="/images/editorial-4/foto9.jpg" alt="foto 9"></div>
+    <!-- ↓ Agrega más fotos copiando el bloque de arriba y cambiando el número -->
   </main>
-
-
-  <!-- LIGHTBOX — no necesitas modificar esto -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose">&times;</button>
     <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8592;</button>
@@ -360,113 +70,43 @@
     <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8594;</button>
     <div class="lightbox-counter" id="lightboxCounter"></div>
   </div>
-
-
-  <!-- FOOTER -->
   <footer>
     <a href="/">Bezma Studio</a>
     &nbsp;·&nbsp;
     <a href="https://www.instagram.com/edo.bezma_ph/" target="_blank" rel="noopener">@Edo.Bezma_PH</a>
   </footer>
-
-
   <script>
-
-    /* ============================================================
-       Fade in al cargar
-       ============================================================ */
-
-    window.addEventListener('load', () => {
-      document.body.classList.remove('is-loading');
+    document.body.classList.remove('is-loading');
+    document.querySelectorAll('.photo-item img').forEach((img, i) => {
+      if (img.complete && img.naturalWidth > 0) {
+        setTimeout(() => img.classList.add('loaded'), i * 60);
+      } else {
+        img.addEventListener('load', () => img.classList.add('loaded'));
+        img.addEventListener('error', () => img.classList.add('loaded'));
+      }
     });
-
-
-    /* ============================================================
-       Lightbox
-       ============================================================ */
-
-    const lightbox      = document.getElementById('lightbox');
-    const lightboxImg   = document.getElementById('lightboxImg');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
     const lightboxClose = document.getElementById('lightboxClose');
-    const lightboxPrev  = document.getElementById('lightboxPrev');
-    const lightboxNext  = document.getElementById('lightboxNext');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
     const lightboxCount = document.getElementById('lightboxCounter');
-
-    // Recopilar todas las imágenes de la grilla
     const photos = Array.from(document.querySelectorAll('.photo-item img'));
     let currentIndex = 0;
-
-    function openLightbox(index) {
-      currentIndex = index;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      loadImage(index);
-    }
-
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      lightboxImg.classList.remove('visible');
-      document.body.style.overflow = '';
-    }
-
-    function loadImage(index) {
-      lightboxImg.classList.remove('visible');
-      setTimeout(() => {
-        lightboxImg.src = photos[index].src;
-        lightboxImg.alt = photos[index].alt;
-        lightboxCount.textContent = `${index + 1} / ${photos.length}`;
-        lightboxImg.classList.add('visible');
-      }, 150);
-    }
-
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-      loadImage(currentIndex);
-    }
-
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % photos.length;
-      loadImage(currentIndex);
-    }
-
-    // Click en cada foto
-    document.querySelectorAll('.photo-item').forEach((item, i) => {
-      item.addEventListener('click', () => openLightbox(i));
-    });
-
-    // Controles
+    function openLightbox(index) { currentIndex = index; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; loadImage(index); }
+    function closeLightbox() { lightbox.classList.remove('active'); lightboxImg.classList.remove('visible'); document.body.style.overflow = ''; }
+    function loadImage(index) { lightboxImg.classList.remove('visible'); setTimeout(() => { lightboxImg.src = photos[index].src; lightboxImg.alt = photos[index].alt; lightboxCount.textContent = `${index + 1} / ${photos.length}`; lightboxImg.classList.add('visible'); }, 150); }
+    function prevImage() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; loadImage(currentIndex); }
+    function nextImage() { currentIndex = (currentIndex + 1) % photos.length; loadImage(currentIndex); }
+    document.querySelectorAll('.photo-item').forEach((item, i) => { item.addEventListener('click', () => openLightbox(i)); });
     lightboxClose.addEventListener('click', closeLightbox);
     lightboxPrev.addEventListener('click', prevImage);
     lightboxNext.addEventListener('click', nextImage);
-
-    // Click fuera de la imagen
-    lightbox.addEventListener('click', e => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    // Teclado
-    document.addEventListener('keydown', e => {
-      if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'Escape')      closeLightbox();
-      if (e.key === 'ArrowLeft')   prevImage();
-      if (e.key === 'ArrowRight')  nextImage();
-    });
-
-    // Swipe en móvil
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowLeft') prevImage(); if (e.key === 'ArrowRight') nextImage(); });
     let touchStartX = 0;
-
-    lightbox.addEventListener('touchstart', e => {
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-
-    lightbox.addEventListener('touchend', e => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        diff > 0 ? nextImage() : prevImage();
-      }
-    }, { passive: true });
-
+    lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', e => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) { diff > 0 ? nextImage() : prevImage(); } }, { passive: true });
   </script>
-
 </body>
 </html>

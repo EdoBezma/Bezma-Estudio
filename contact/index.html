@@ -4,45 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO: Title con keyword + ciudad -->
   <title>Contacto | Bezma Studio — Fotógrafo de Moda en Santiago de Chile</title>
-
-  <!-- SEO: Meta description -->
   <meta name="description" content="Agenda tu sesión fotográfica con Bezma Studio en Santiago de Chile. Books de moda y retrato desde $40.000 CLP. Escríbenos por WhatsApp o correo y reserva tu fecha.">
-
-  <!-- Canonical -->
   <link rel="canonical" href="https://bezmastudio.com/contact">
-
   <meta name="robots" content="index, follow">
   <meta name="author" content="Eduardo Bezmalinovic — Bezma Studio">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bezmastudio.com/contact">
   <meta property="og:title" content="Contacto | Bezma Studio — Fotógrafo de Moda en Santiago">
-  <meta property="og:description" content="Agenda tu sesión fotográfica en Santiago. Books de moda y retrato con maquillaje incluido. Escríbenos y reserva tu fecha.">
+  <meta property="og:description" content="Agenda tu sesión fotográfica en Santiago. Books de moda y retrato con maquillaje incluido.">
   <meta property="og:image" content="https://bezmastudio.com/images/og-cover.jpg">
   <meta property="og:locale" content="es_CL">
   <meta property="og:site_name" content="Bezma Studio">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contacto | Bezma Studio — Fotógrafo de Moda en Santiago">
-  <meta name="twitter:description" content="Agenda tu sesión fotográfica en Santiago. Books desde $40.000 CLP con maquillaje incluido.">
+  <meta name="twitter:title" content="Contacto | Bezma Studio">
+  <meta name="twitter:description" content="Agenda tu sesión fotográfica en Santiago. Books desde $40.000 CLP.">
   <meta name="twitter:image" content="https://bezmastudio.com/images/og-cover.jpg">
 
-  <!-- Schema: ContactPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "name": "Contacto — Bezma Studio",
     "url": "https://bezmastudio.com/contact",
-    "description": "Página de contacto para agendar sesiones fotográficas de moda y retrato en Santiago de Chile.",
     "mainEntity": {
       "@type": "LocalBusiness",
       "name": "Bezma Studio",
-      "email": "edosalvo.fotos@gmail..com",
+      "email": "edosalvo.fotos@gmail.com",
+      "telephone": "+56978979883",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Providencia",
@@ -54,24 +45,13 @@
   }
   </script>
 
-  <!-- Schema: BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://bezmastudio.com/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Contacto",
-        "item": "https://bezmastudio.com/contact"
-      }
+      { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://bezmastudio.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Contacto", "item": "https://bezmastudio.com/contact" }
     ]
   }
   </script>
@@ -79,445 +59,724 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
 
   <style>
-    /* =====================================================
-       CONTACT PAGE — Estilos específicos
-       Se apoyan en las variables de style.css existente
-       ===================================================== */
+    /* ══════════════════════════════════════════
+       DESIGN TOKENS — Pantone palette
+       ─────────────────────────────────────────
+       Chicory Coffee  19-1419  #3d2118  → fondo base
+       Martini Olive   18-0625  #6b6140  → acento neutro / bordes
+       Avocado Oil     16-0640  #8b8420  → acento medio
+       Lemon Pepper    16-1119  #a89c8c  → texto muted
+       Tangerine Tango 17-1463  #d94f2b  → acento de acción
+       Sunny Lime      12-0741  #cede7a  → acento luminoso puntual
+    ══════════════════════════════════════════ */
+    :root {
+      /* Fondos */
+      --bg:          #2a1810;   /* Chicory Coffee oscurecido — fondo página */
+      --bg-mid:      #3d2118;   /* Chicory Coffee puro — superficies */
+      --bg-light:    #4a2b1e;   /* Chicory Coffee claro — hover sutil */
 
-    .contact-main {
+      /* Bordes */
+      --border:       rgba(168,156,140,0.14);   /* Lemon Pepper muy tenue */
+      --border-hover: rgba(168,156,140,0.32);
+
+      /* Acentos */
+      --tango:       #d94f2b;   /* Tangerine Tango — CTA principal */
+      --tango-dim:   rgba(217,79,43,0.12);
+      --olive:       #6b6140;   /* Martini Olive — acento secundario */
+      --olive-light: #8b8420;   /* Avocado Oil — hover de olive */
+      --lime-dim:    rgba(206,222,122,0.08); /* Sunny Lime suavísimo — detalle */
+
+      /* Texto */
+      --text:        #f0ebe4;   /* Blanco cálido */
+      --text-mid:    rgba(240,235,228,0.58);
+      --text-muted:  rgba(168,156,140,0.65); /* Lemon Pepper */
+
+      /* Tipografía */
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'DM Sans', sans-serif;
+      --ease:   cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    /* ── RESET ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
       min-height: 100vh;
+      cursor: none;
+    }
+
+    /* ── CURSOR LUJO ─────────────────────── */
+    .cursor {
+      position: fixed;
+      width: 7px; height: 7px;
+      background: var(--tango);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 30px; height: 30px;
+      border: 1px solid rgba(217,79,43,0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width .22s var(--ease), height .22s var(--ease), border-color .22s;
+    }
+    a, button { cursor: none; }
+
+    /* ── HEADER / NAV ────────────────────── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 28px 52px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 120px 24px 80px;
+      justify-content: space-between;
     }
 
-    .contact-section {
-      width: 100%;
-      max-width: 640px;
-      margin: 0 auto;
-    }
+    .site-nav ul { list-style: none; display: flex; gap: 44px; }
 
-    /* Encabezado de sección */
-    .contact-eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
+    .site-nav a {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 300;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      opacity: 0.45;
-      margin-bottom: 12px;
-    }
-
-    .contact-section h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 400;
-      line-height: 1.15;
-      margin: 0 0 16px;
-    }
-
-    .contact-subtitle {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 300;
-      line-height: 1.7;
-      opacity: 0.65;
-      margin-bottom: 48px;
-    }
-
-    /* Botones CTA principales */
-    .cta-group {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 52px;
-    }
-
-    .cta-btn {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 18px 24px;
-      border: 1px solid currentColor;
       text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      transition: all 0.25s ease;
-      cursor: pointer;
+      color: var(--text-mid);
+      transition: color .25s var(--ease);
+      padding-bottom: 3px;
+    }
+    .site-nav a:hover { color: var(--text); }
+    .site-nav a[aria-current="page"] {
+      color: var(--text);
+      border-bottom: 1px solid var(--tango);
     }
 
-    .cta-btn--primary {
-      background: currentColor;
+    /* ── LAYOUT DOS COLUMNAS ─────────────── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
     }
 
-    .cta-btn--primary .cta-btn__label {
-      color: #fff;
-      mix-blend-mode: difference;
+    /* ── COLUMNA IZQUIERDA — imagen ──────── */
+    .contact-visual {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    .cta-btn:hover {
-      opacity: 0.7;
-      transform: translateX(4px);
+    .contact-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      filter: brightness(0.38) contrast(1.1) saturate(0.85);
+      transform: scale(1.04);
+      transition: transform 10s var(--ease);
+    }
+    .contact-visual:hover img { transform: scale(1.0); }
+
+    /* Gradiente lateral hacia el fondo */
+    .contact-visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        108deg,
+        transparent 42%,
+        var(--bg) 100%
+      );
     }
 
-    .cta-btn__icon {
-      font-size: 1.1rem;
-      flex-shrink: 0;
+    /* Claim flotante */
+    .visual-claim {
+      position: absolute;
+      bottom: 60px; left: 52px;
+      z-index: 2;
+    }
+    .visual-claim__line {
+      display: block;
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 3.6vw, 4rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.08;
+      color: var(--text);
+      opacity: 0;
+      transform: translateY(22px);
+      animation: fadeUp 1s var(--ease) forwards;
+    }
+    .visual-claim__line:nth-child(2) { animation-delay: .12s; }
+    .visual-claim__line:nth-child(3) { animation-delay: .24s; }
+
+    .visual-claim__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--tango);
+      opacity: 0;
+      animation: fadeUp 1s var(--ease) .38s forwards;
+    }
+    .visual-claim__badge::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--tango);
     }
 
-    .cta-btn__text {
+    /* ── COLUMNA DERECHA — contenido ─────── */
+    .contact-content {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      justify-content: center;
+      padding: 120px 68px 80px 76px;
+      position: relative;
     }
 
-    .cta-btn__label {
-      font-size: 0.88rem;
-      font-weight: 500;
+    /* Línea vertical decorativa */
+    .contact-content::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 18%; height: 64%;
+      width: 1px;
+      background: linear-gradient(to bottom,
+        transparent,
+        var(--border-hover) 30%,
+        var(--border-hover) 70%,
+        transparent
+      );
     }
 
-    .cta-btn__sub {
-      font-size: 0.76rem;
-      opacity: 0.55;
-    }
-
-    /* Divisor con texto */
-    .contact-divider {
+    /* Tag de sección */
+    .section-tag {
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--tango);
+      margin-bottom: 28px;
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 40px;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp .8s var(--ease) .15s forwards;
     }
-
-    .contact-divider::before,
-    .contact-divider::after {
+    .section-tag::before {
       content: '';
-      flex: 1;
-      height: 1px;
-      background: currentColor;
-      opacity: 0.15;
+      width: 20px; height: 1px;
+      background: var(--tango);
     }
 
-    .contact-divider span {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.35;
+    /* Título */
+    .contact-title {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 3.8vw, 4.4rem);
+      font-weight: 300;
+      line-height: 1.05;
+      margin-bottom: 22px;
+      opacity: 0;
+      animation: fadeUp .85s var(--ease) .25s forwards;
+    }
+    .contact-title em {
+      font-style: italic;
+      color: var(--text-mid);
     }
 
-    /* Formulario rápido -->
-    /* Cuéntanos qué book te interesa y te respondemos en el día */
-    .contact-form {
+    /* Descripción */
+    .contact-intro {
+      font-size: 0.8rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--text-mid);
+      max-width: 340px;
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp .85s var(--ease) .35s forwards;
+    }
+
+    /* ── FORMULARIO ──────────────────────── */
+    .booking-form {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp .85s var(--ease) .45s forwards;
     }
 
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 40px;
+      margin-bottom: 36px;
     }
 
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .field { position: relative; }
+    .field + .field { margin-bottom: 36px; }
 
-    .form-field label {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
+    /* Label */
+    .field label {
+      display: block;
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      opacity: 0.45;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      transition: color .3s var(--ease);
     }
+    .field:focus-within label { color: var(--tango); }
 
-    .form-field input,
-    .form-field select,
-    .form-field textarea {
+    /* Input / select / textarea */
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
       background: transparent;
       border: none;
-      border-bottom: 1px solid currentColor;
-      border-bottom-color: rgba(128,128,128,0.3);
-      padding: 10px 0;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 0 14px;
+      font-family: var(--sans);
+      font-size: 0.85rem;
       font-weight: 300;
-      color: inherit;
+      color: var(--text);
       outline: none;
-      transition: border-color 0.2s ease;
-      width: 100%;
       appearance: none;
       -webkit-appearance: none;
+      border-radius: 0;
+      transition: border-color .3s var(--ease);
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-bottom-color: rgba(217,79,43,0.35);
     }
 
-    .form-field input:focus,
-    .form-field select:focus,
-    .form-field textarea:focus {
-      border-bottom-color: currentColor;
+    /* Barra animada Tangerine Tango */
+    .field-underline {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: var(--tango);
+      transition: width .45s var(--ease);
     }
+    .field:focus-within .field-underline { width: 100%; }
 
-    .form-field textarea {
-      resize: none;
-      height: 72px;
+    ::placeholder { color: var(--text-muted); font-weight: 300; font-size: .82rem; }
+
+    /* Select arrow — color tango */
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23d94f2b' stroke-width='1.2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 2px center;
+      padding-right: 20px;
     }
+    .field select option { background: var(--bg-mid); color: var(--text); }
 
-    .form-field select option {
-      background: #1a1a1a;
-      color: #fff;
-    }
+    .field textarea { resize: none; height: 76px; line-height: 1.75; }
 
-    .form-submit {
+    /* ── BOTÓN SUBMIT ────────────────────── */
+    .submit-row {
+      margin-top: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding: 16px 24px;
+    }
+
+    .btn-submit {
       background: transparent;
-      border: 1px solid currentColor;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
+      border: none;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.66rem;
+      font-weight: 300;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: inherit;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .form-submit:hover {
-      opacity: 0.7;
-    }
-
-    .form-submit__arrow {
-      font-size: 1rem;
-      transition: transform 0.2s ease;
-    }
-
-    .form-submit:hover .form-submit__arrow {
-      transform: translateX(4px);
-    }
-
-    /* Info de respuesta */
-    .contact-info-block {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(128,128,128,0.15);
-    }
-
-    .contact-info-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.82rem;
+      gap: 18px;
+      padding: 0;
+      transition: color .3s var(--ease);
+    }
+    .btn-submit:hover { color: var(--tango); }
+
+    .btn-icon {
+      width: 42px; height: 42px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all .35s var(--ease);
+      flex-shrink: 0;
+    }
+    .btn-submit:hover .btn-icon {
+      border-color: var(--tango);
+      background: var(--tango-dim);
+      transform: rotate(45deg);
+    }
+
+    .submit-note {
+      font-size: 0.62rem;
       font-weight: 300;
-      opacity: 0.55;
+      color: var(--text-muted);
+      letter-spacing: .1em;
     }
 
-    .contact-info-item__icon {
-      font-size: 0.9rem;
+    /* ── ESTADO ÉXITO ────────────────────── */
+    .form-success {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      margin-top: 12px;
+    }
+    .form-success.visible { display: block; }
+
+    .success-dot {
+      width: 5px; height: 5px;
+      background: var(--tango);
+      border-radius: 50%;
+      margin-bottom: 16px;
+    }
+    .success-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .success-sub {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.8;
     }
 
-    @media (max-width: 520px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
+    /* ── CANALES ALTERNATIVOS ────────────── */
+    .alt-channels {
+      display: flex;
+      margin-top: 52px;
+      padding-top: 36px;
+      border-top: 1px solid var(--border);
+      gap: 0;
+      opacity: 0;
+      animation: fadeUp .85s var(--ease) .6s forwards;
+    }
 
-      .contact-main {
-        padding: 100px 20px 60px;
+    .channel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      text-decoration: none;
+      transition: opacity .25s;
+    }
+    .channel:hover { opacity: .55; }
+
+    .channel + .channel {
+      padding-left: 32px;
+      margin-left: 32px;
+      border-left: 1px solid var(--border);
+    }
+
+    .channel__label {
+      font-size: .57rem;
+      font-weight: 400;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .channel__value {
+      font-family: var(--serif);
+      font-size: .92rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+    }
+    .channel__arrow {
+      font-size: .7rem;
+      color: var(--tango);
+      margin-top: 2px;
+    }
+
+    /* ── FOOTER ──────────────────────────── */
+    .page-footer {
+      padding: 20px 52px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: .62rem;
+      font-weight: 300;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .page-footer a {
+      color: inherit;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .page-footer a:hover { color: var(--text); }
+
+    /* ── ANIMACIONES ─────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ──────────────────────── */
+    @media (max-width: 960px) {
+      .contact-layout { grid-template-columns: 1fr; }
+
+      .contact-visual {
+        position: relative;
+        height: 55vw;
+        min-height: 280px;
       }
+      .contact-visual::after {
+        background: linear-gradient(to bottom, transparent 30%, var(--bg) 100%);
+      }
+      .visual-claim { bottom: 28px; left: 28px; }
+
+      .contact-content { padding: 40px 28px 64px; }
+      .contact-content::before { display: none; }
+      .site-header { padding: 20px 28px; }
+    }
+
+    @media (max-width: 560px) {
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .form-row .field { margin-bottom: 36px; }
+      .site-nav ul { gap: 22px; }
+      .alt-channels { flex-direction: column; gap: 0; }
+      .channel + .channel {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        padding-left: 0; margin-left: 0;
+        padding-top: 24px; margin-top: 24px;
+      }
+      .page-footer { flex-direction: column; gap: 8px; text-align: center; }
     }
   </style>
 </head>
 
 <body class="contact-page inner-page is-loading">
-  <div class="page-wrapper">
 
-    <!-- MENÚ -->
-    <header>
-      <nav class="menu" aria-label="Navegación principal">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/#books">Books</a></li>
-          <li><a href="/about">Sobre mí</a></li>
-          <li><a href="/contact" aria-current="page">Contacto</a></li>
-        </ul>
-      </nav>
-    </header>
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
 
+  <!-- HEADER -->
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/#books">Books</a></li>
+        <li><a href="/about">Sobre mí</a></li>
+        <li><a href="/contact" aria-current="page">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- ======================================================= -->
-    <!-- CONTACT MAIN                                            -->
-    <!-- ======================================================= -->
-    <main class="contact-main">
-      <section class="contact-section" aria-labelledby="contact-heading">
+  <main>
+    <div class="contact-layout">
 
-        <!-- Eyebrow + título + subtítulo -->
-        <p class="contact-eyebrow">Bezma Studio · Santiago de Chile</p>
+      <!-- ════════════════════════════════
+           COLUMNA IZQUIERDA — imagen
+      ════════════════════════════════ -->
+      <div class="contact-visual" aria-hidden="true">
+        <!--
+          Imagen vertical de tu trabajo, mín. 900×1200px.
+          Reemplaza /images/yo.jpg por la foto que prefieras.
+        -->
+        <img src="/images/yo.jpg"
+             alt="Fotografía de moda — Bezma Studio Santiago"
+             loading="eager">
 
-        <h1 id="contact-heading">Agenda tu sesión</h1>
+        <div class="visual-claim">
+          <span class="visual-claim__line">Tu mejor</span>
+          <span class="visual-claim__line">versión,</span>
+          <span class="visual-claim__line">encuadrada.</span>
+          <span class="visual-claim__badge">Bezma Studio · Providencia, Santiago</span>
+        </div>
+      </div>
 
-        <p class="contact-subtitle">
-          Respondo todos los mensajes en menos de 24 horas. 
-          Cuéntame qué tienes en mente y encontramos la sesión perfecta para ti.
+      <!-- ════════════════════════════════
+           COLUMNA DERECHA — formulario
+      ════════════════════════════════ -->
+      <div class="contact-content">
+
+        <span class="section-tag">Reserva una sesión</span>
+
+        <h1 class="contact-title">
+          Agenda<br><em>tu sesión</em>
+        </h1>
+
+        <p class="contact-intro">
+          Respondo cada mensaje en menos de 24 horas.
+          Cuéntame qué tienes en mente y encontramos
+          la sesión perfecta para ti.
         </p>
 
-
-        <!-- ===================================================== -->
-        <!-- CTA DIRECTOS — WhatsApp + Email                        -->
-        <!-- IMPORTANTE: reemplaza el número de WhatsApp abajo      -->
-        <!-- Formato: 569XXXXXXXX (sin +, sin espacios)             -->
-        <!-- ===================================================== -->
-        <div class="cta-group" role="list">
-
-          <a href="https://wa.me/56978979883?text=Hola%20Eduardo%2C%20me%20interesa%20agendar%20una%20sesi%C3%B3n%20fotogr%C3%A1fica%20con%20Bezma%20Studio."
-             target="_blank"
-             rel="noopener"
-             class="cta-btn cta-btn--primary"
-             aria-label="Escribir por WhatsApp para agendar sesión fotográfica"
-             role="listitem">
-            <!-- ↑ Reemplaza 56912345678 con tu número real -->
-            <span class="cta-btn__icon">💬</span>
-            <div class="cta-btn__text">
-              <span class="cta-btn__label">Escribir por WhatsApp</span>
-              <span class="cta-btn__sub">Respuesta rápida · Disponible todos los días</span>
-            </div>
-          </a>
-
-          <a href="mailto:edosalvo.fotos@gmail.com?subject=Quiero%20agendar%20una%20sesi%C3%B3n%20fotogr%C3%A1fica&body=Hola%20Eduardo%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre..."
-             class="cta-btn"
-             aria-label="Enviar email para agendar sesión fotográfica"
-             role="listitem">
-            <span class="cta-btn__icon">✉️</span>
-            <div class="cta-btn__text">
-              <span class="cta-btn__label">Enviar un correo</span>
-              <span class="cta-btn__sub">BezmaStudio@gmail.com</span>
-            </div>
-          </a>
-
-          <a href="https://www.instagram.com/edo.bezma_ph/"
-             target="_blank"
-             rel="noopener"
-             class="cta-btn"
-             aria-label="Ver Instagram de Bezma Studio"
-             role="listitem">
-            <span class="cta-btn__icon">📷</span>
-            <div class="cta-btn__text">
-              <span class="cta-btn__label">Seguir en Instagram</span>
-              <span class="cta-btn__sub">@Edo.Bezma_PH · Ver el trabajo</span>
-            </div>
-          </a>
-
-        </div>
-
-
-        <!-- Divisor -->
-        <div class="contact-divider" aria-hidden="true">
-          <span>o cuéntanos directamente</span>
-        </div>
-
-
-        <!-- ===================================================== -->
-        <!-- FORMULARIO RÁPIDO                                      -->
-        <!-- Envía por WhatsApp con los datos pre-cargados          -->
-        <!-- ===================================================== -->
-        <form class="contact-form"
-              id="contact-form"
-              aria-label="Formulario de contacto para agendar sesión"
-              novalidate>
+        <!-- FORMULARIO → WhatsApp -->
+        <form class="booking-form" id="contact-form" novalidate
+              aria-label="Formulario para agendar sesión fotográfica">
 
           <div class="form-row">
-            <div class="form-field">
+            <div class="field">
               <label for="nombre">Nombre</label>
               <input type="text" id="nombre" name="nombre"
                      placeholder="Tu nombre"
-                     autocomplete="given-name"
-                     required>
+                     autocomplete="given-name" required>
+              <div class="field-underline"></div>
             </div>
-            <div class="form-field">
-              <label for="servicio">¿Qué book te interesa?</label>
+
+            <div class="field">
+              <label for="servicio">Sesión de interés</label>
               <select id="servicio" name="servicio" required>
-                <option value="" disabled selected>Selecciona</option>
-                <option value="Polas ($40.000 CLP)">Polas — $40.000 CLP</option>
-                <option value="Book Essential ($95.000 CLP)">Book Essential — $95.000 CLP</option>
-                <option value="Book Editorial ($135.000 CLP)">Book Editorial — $135.000 CLP</option>
-                <option value="Book Editorial Plus ($300.000 CLP)">Editorial Plus — $300.000 CLP</option>
-                <option value="No lo sé aún">Aún no lo sé</option>
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Polas — $40.000 CLP">Polas — $40.000 CLP</option>
+                <option value="Book Essential — $95.000 CLP">Book Essential — $95.000 CLP</option>
+                <option value="Book Editorial — desde $135.000 CLP">Book Editorial — $135.000 CLP</option>
+                <option value="Book Editorial Plus — desde $300.000 CLP">Editorial Plus — $300.000 CLP</option>
+                <option value="Aún no lo sé">Aún no lo sé</option>
               </select>
+              <div class="field-underline"></div>
             </div>
           </div>
 
-          <div class="form-field">
-            <label for="mensaje">¿Algo que quieras contarme?</label>
+          <div class="field">
+            <label for="mensaje">Mensaje</label>
             <textarea id="mensaje" name="mensaje"
-                      placeholder="Cuéntame qué tienes en mente, una fecha tentativa, o cualquier duda..."></textarea>
+                      placeholder="Una fecha tentativa, una idea, cualquier pregunta…"></textarea>
+            <div class="field-underline"></div>
           </div>
 
-          <button type="submit" class="form-submit" id="form-submit-btn">
-            <span>Enviar por WhatsApp</span>
-            <span class="form-submit__arrow">→</span>
-          </button>
+          <!-- Submit -->
+          <div class="submit-row" id="submit-row">
+            <button type="submit" class="btn-submit">
+              <span class="btn-icon">↗</span>
+              <span>Enviar por WhatsApp</span>
+            </button>
+            <span class="submit-note">Respuesta en &lt; 24 h</span>
+          </div>
+
+          <!-- Confirmación -->
+          <div class="form-success" id="form-success" role="status" aria-live="polite">
+            <div class="success-dot"></div>
+            <p class="success-title">Mensaje preparado.</p>
+            <p class="success-sub">
+              Se abrió WhatsApp con tu consulta lista.<br>
+              Respondo en menos de 24 horas.
+            </p>
+          </div>
 
         </form>
 
+        <!-- CANALES ALTERNATIVOS -->
+        <div class="alt-channels" aria-label="Otras formas de contacto">
 
-        <!-- Info adicional de confianza -->
-        <div class="contact-info-block" aria-label="Información de contacto adicional">
-          <div class="contact-info-item">
-            <span class="contact-info-item__icon">📍</span>
-            <span>Estudio en Providencia, Santiago de Chile</span>
+          <a href="mailto:edosalvo.fotos@gmail.com" class="channel"
+             aria-label="Enviar correo a edosalvo.fotos@gmail.com">
+            <span class="channel__label">Correo</span>
+            <span class="channel__value">edosalvo.fotos@gmail.com</span>
+            <span class="channel__arrow">→</span>
+          </a>
+
+          <a href="https://www.instagram.com/edo.bezma_ph/"
+             target="_blank" rel="noopener" class="channel"
+             aria-label="Instagram @Edo.Bezma_PH">
+            <span class="channel__label">Instagram</span>
+            <span class="channel__value">@Edo.Bezma_PH</span>
+            <span class="channel__arrow">→</span>
+          </a>
+
+          <div class="channel" role="presentation">
+            <span class="channel__label">Estudio</span>
+            <span class="channel__value">Providencia, Santiago</span>
           </div>
-          <div class="contact-info-item">
-            <span class="contact-info-item__icon">🕐</span>
-            <span>Respondo en menos de 24 horas</span>
-          </div>
-          <div class="contact-info-item">
-            <span class="contact-info-item__icon">📅</span>
-            <span>Sesiones disponibles de lunes a sábado</span>
-          </div>
+
         </div>
 
-      </section>
-    </main>
+      </div><!-- /contact-content -->
 
+    </div><!-- /contact-layout -->
+  </main>
 
-    <!-- FOOTER -->
-    <footer class="footer-line" itemscope itemtype="https://schema.org/LocalBusiness">
-      <div class="footer-content">
-        <a href="mailto:BezmaStudio@gmail.com" itemprop="email">edosalvo.fotos@gmail.com</a>
-        <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-          <span itemprop="addressLocality">Santiago de Chile</span>,
-          <span itemprop="addressRegion">Providencia</span>
-        </span>
-        <a href="https://www.instagram.com/edo.bezma_ph/" target="_blank" rel="noopener" itemprop="sameAs">IG: @Edo.Bezma_PH</a>
-      </div>
-    </footer>
+  <!-- FOOTER -->
+  <footer class="page-footer" itemscope itemtype="https://schema.org/LocalBusiness">
+    <span>© Bezma Studio <span id="year"></span></span>
+    <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+      <span itemprop="addressLocality">Santiago</span> ·
+      <span itemprop="addressRegion">Providencia</span>
+    </span>
+    <a href="https://www.instagram.com/edo.bezma_ph/"
+       target="_blank" rel="noopener" itemprop="sameAs">@Edo.Bezma_PH</a>
+  </footer>
 
-  </div>
-
-  <!-- JS -->
+  <!-- JS del site -->
   <script src="/js/menu.js"></script>
   <script src="/js/pagetransitions.js"></script>
 
-  <!-- =========================================================== -->
-  <!-- SCRIPT: Formulario → WhatsApp                               -->
-  <!-- Construye el mensaje con los datos del form y abre WhatsApp -->
-  <!-- =========================================================== -->
   <script>
+    /* AÑO AUTOMÁTICO */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* CURSOR */
+    const cur  = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cur.style.left = mx + 'px';
+      cur.style.top  = my + 'px';
+    });
+    (function tick() {
+      rx += (mx - rx) * .11;
+      ry += (my - ry) * .11;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(tick);
+    })();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        ring.style.width  = '50px';
+        ring.style.height = '50px';
+        ring.style.borderColor = 'rgba(217,79,43,0.7)';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.style.width  = '30px';
+        ring.style.height = '30px';
+        ring.style.borderColor = 'rgba(217,79,43,0.4)';
+      });
+    });
+
+    /* FORMULARIO → WHATSAPP */
+    const WA_NUMBER = '56978979883';
+
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -525,28 +784,20 @@
       const servicio = document.getElementById('servicio').value;
       const mensaje  = document.getElementById('mensaje').value.trim();
 
-      // Validación mínima
-      if (!nombre) {
-        alert('Por favor ingresa tu nombre.');
-        return;
-      }
-      if (!servicio) {
-        alert('Por favor selecciona el servicio que te interesa.');
-        return;
-      }
+      if (!nombre)   { document.getElementById('nombre').focus(); return; }
+      if (!servicio) { document.getElementById('servicio').focus(); return; }
 
-      // Construcción del mensaje para WhatsApp
-      let texto = `Hola Eduardo, soy ${nombre} y me interesa agendar una sesión en Bezma Studio.`;
-      texto += `\n\n📸 Book de interés: ${servicio}`;
-      if (mensaje) {
-        texto += `\n\n💬 Mensaje: ${mensaje}`;
-      }
+      let txt = `Hola Eduardo, soy *${nombre}* y me interesa agendar una sesión en Bezma Studio.`;
+      txt += `\n\n📸 *Sesión de interés:* ${servicio}`;
+      if (mensaje) txt += `\n\n💬 *Mensaje:* ${mensaje}`;
 
-      // ↓ Reemplaza 56912345678 con tu número real de WhatsApp
-      const numero = '56978979883';
-      const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+      window.open(
+        `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(txt)}`,
+        '_blank', 'noopener'
+      );
 
-      window.open(url, '_blank', 'noopener');
+      document.getElementById('submit-row').style.display = 'none';
+      document.getElementById('form-success').classList.add('visible');
     });
   </script>
 

@@ -3,73 +3,867 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre mí | Bezma Studio</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Sobre mí | Bezma Studio — Eduardo Bezmalinovic, Fotógrafo de Moda en Santiago</title>
+  <meta name="description" content="Eduardo Bezmalinovic, fotógrafo chileno especializado en moda y retrato en Santiago de Chile. Conoce su visión, su trabajo y el estudio Bezma Studio en Providencia.">
+  <link rel="canonical" href="https://bezmastudio.com/about">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Eduardo Bezmalinovic — Bezma Studio">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://bezmastudio.com/about">
+  <meta property="og:title" content="Sobre mí | Bezma Studio — Eduardo Bezmalinovic">
+  <meta property="og:description" content="Fotógrafo chileno especializado en moda y retrato. Sesiones de fotografía editorial en Santiago de Chile.">
+  <meta property="og:image" content="https://bezmastudio.com/images/og-cover.jpg">
+  <meta property="og:locale" content="es_CL">
+  <meta property="og:site_name" content="Bezma Studio">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sobre mí | Bezma Studio">
+  <meta name="twitter:description" content="Eduardo Bezmalinovic, fotógrafo de moda y retrato en Santiago de Chile.">
+  <meta name="twitter:image" content="https://bezmastudio.com/images/og-cover.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "name": "Sobre mí — Eduardo Bezmalinovic",
+    "url": "https://bezmastudio.com/about",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Eduardo Bezmalinovic",
+      "jobTitle": "Fotógrafo de Moda y Retrato",
+      "description": "Fotógrafo y retocador chileno especializado en fotografía de moda y retrato en Santiago de Chile.",
+      "url": "https://bezmastudio.com",
+      "email": "edosalvo.fotos@gmail.com",
+      "telephone": "+56978979883",
+      "image": "https://bezmastudio.com/images/yo.jpg",
+      "worksFor": { "@type": "Organization", "name": "Bezma Studio" },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Providencia",
+        "addressRegion": "Región Metropolitana",
+        "addressCountry": "CL"
+      },
+      "sameAs": ["https://www.instagram.com/edo.bezma_ph/"]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://bezmastudio.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Sobre mí", "item": "https://bezmastudio.com/about" }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+
+  <style>
+    /* ══════════════════════════════════════════
+       TOKENS — misma paleta que contact.html
+    ══════════════════════════════════════════ */
+    :root {
+      --bg:          #2a1810;
+      --bg-mid:      #3d2118;
+      --bg-light:    #4a2b1e;
+      --border:       rgba(168,156,140,0.14);
+      --border-hover: rgba(168,156,140,0.32);
+      --tango:       #d94f2b;
+      --tango-dim:   rgba(217,79,43,0.10);
+      --olive:       #6b6140;
+      --text:        #f0ebe4;
+      --text-mid:    rgba(240,235,228,0.58);
+      --text-muted:  rgba(168,156,140,0.65);
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'DM Sans', sans-serif;
+      --ease:   cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    /* ── RESET ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      cursor: none;
+    }
+
+    /* ── CURSOR ──────────────────────────── */
+    .cursor {
+      position: fixed;
+      width: 7px; height: 7px;
+      background: var(--tango);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 30px; height: 30px;
+      border: 1px solid rgba(217,79,43,0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width .22s var(--ease), height .22s var(--ease), border-color .22s;
+    }
+    a, button { cursor: none; }
+
+    /* ── HEADER ──────────────────────────── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 28px 52px;
+    }
+    .site-nav ul { list-style: none; display: flex; gap: 44px; }
+    .site-nav a {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-mid);
+      transition: color .25s var(--ease);
+      padding-bottom: 3px;
+    }
+    .site-nav a:hover { color: var(--text); }
+    .site-nav a[aria-current="page"] {
+      color: var(--text);
+      border-bottom: 1px solid var(--tango);
+    }
+
+    /* ══════════════════════════════════════════
+       HERO — imagen full height con texto
+    ══════════════════════════════════════════ */
+    .about-hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .about-hero__img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      filter: brightness(0.35) contrast(1.1) saturate(0.8);
+      transform: scale(1.04);
+      transition: transform 12s var(--ease);
+    }
+    .about-hero:hover .about-hero__img { transform: scale(1.0); }
+
+    /* Gradiente inferior */
+    .about-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 30%,
+        rgba(42,24,16,0.6) 65%,
+        var(--bg) 100%
+      );
+    }
+
+    /* Texto hero */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 52px 80px;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 6vw, 6.5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease) .1s forwards;
+    }
+    .hero-name em {
+      display: block;
+      font-style: italic;
+      color: var(--text-mid);
+    }
+
+    .hero-meta {
+      text-align: right;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease) .3s forwards;
+    }
+    .hero-meta__role {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--tango);
+      margin-bottom: 8px;
+    }
+    .hero-meta__location {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-mid);
+    }
+
+    /* Indicador de scroll */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp .8s var(--ease) .8s forwards;
+    }
+    .scroll-hint__line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--tango), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    .scroll-hint__label {
+      font-size: 0.55rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.15); }
+    }
+
+    /* ══════════════════════════════════════════
+       SECCIÓN BIO — layout asimétrico
+    ══════════════════════════════════════════ */
+    .about-bio {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 0;
+      padding: 100px 52px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Columna izquierda — índice + datos */
+    .bio-sidebar {
+      padding-right: 64px;
+      border-right: 1px solid var(--border);
+      padding-top: 6px;
+    }
+
+    .bio-index {
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--tango);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp .8s var(--ease) .1s forwards;
+    }
+    .bio-index::before {
+      content: '';
+      width: 18px; height: 1px;
+      background: var(--tango);
+    }
+
+    /* Stats / datos clave */
+    .bio-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .stat {
+      opacity: 0;
+      animation: fadeUp .8s var(--ease) forwards;
+    }
+    .stat:nth-child(1) { animation-delay: .2s; }
+    .stat:nth-child(2) { animation-delay: .32s; }
+    .stat:nth-child(3) { animation-delay: .44s; }
+    .stat:nth-child(4) { animation-delay: .56s; }
+
+    .stat__label {
+      font-size: 0.55rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .stat__value {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    /* CTA en sidebar */
+    .sidebar-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 52px;
+      text-decoration: none;
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      transition: color .25s var(--ease), border-color .25s;
+      opacity: 0;
+      animation: fadeUp .8s var(--ease) .65s forwards;
+    }
+    .sidebar-cta:hover {
+      color: var(--tango);
+      border-color: var(--tango);
+    }
+    .sidebar-cta__arrow { transition: transform .25s var(--ease); }
+    .sidebar-cta:hover .sidebar-cta__arrow { transform: translateX(4px); }
+
+    /* Columna derecha — texto */
+    .bio-text {
+      padding-left: 72px;
+    }
+
+    /* ══════════════════════════════════════════
+       BLOQUE DE TEXTO — versión original / rewrite
+       Instrucción para Eduardo:
+       ─────────────────────────────────────────
+       Verás dos bloques de texto aquí:
+       1. class="bio-version bio-version--original"  → tu texto actual
+       2. class="bio-version bio-version--rewrite"   → mi propuesta
+
+       Para activar el que prefieras:
+       - Deja visible el que quieres (sin el comentario)
+       - Envuelve el otro en <!-- ... -->
+       ─────────────────────────────────────────
+    ══════════════════════════════════════════ -->
+
+    <!-- ══════════════════════════════════════
+         VERSIÓN A — Texto original de Eduardo
+    ══════════════════════════════════════════ -->
+    <!-- BORRAR ESTE COMENTARIO PARA ACTIVAR LA VERSIÓN ORIGINAL
+    <div class="bio-version bio-version--original">
+    </div>
+    FIN VERSIÓN ORIGINAL -->
+
+    <!-- ══════════════════════════════════════
+         VERSIÓN B — Rewrite profesional (activa por defecto)
+    ══════════════════════════════════════════ -->
+
+    .bio-heading {
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 2.8vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp .85s var(--ease) .15s forwards;
+    }
+    .bio-heading em {
+      font-style: italic;
+      color: var(--text-mid);
+    }
+
+    .bio-body {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .bio-body p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.95;
+      color: var(--text-mid);
+      opacity: 0;
+      animation: fadeUp .85s var(--ease) forwards;
+    }
+    .bio-body p:nth-child(1) { animation-delay: .25s; }
+    .bio-body p:nth-child(2) { animation-delay: .38s; }
+    .bio-body p:nth-child(3) { animation-delay: .51s; }
+
+    .bio-body p strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* Cita / pull quote */
+    .bio-pullquote {
+      margin: 20px 0 8px;
+      padding: 28px 32px;
+      border-left: 2px solid var(--tango);
+      background: linear-gradient(to right, var(--tango-dim), transparent);
+      opacity: 0;
+      animation: fadeUp .85s var(--ease) .6s forwards;
+    }
+    .bio-pullquote p {
+      font-family: var(--serif) !important;
+      font-size: 1.25rem !important;
+      font-style: italic;
+      font-weight: 300 !important;
+      color: var(--text) !important;
+      line-height: 1.6 !important;
+      animation: none !important;
+      opacity: 1 !important;
+    }
+
+    /* ══════════════════════════════════════════
+       SECCIÓN SERVICIOS — visual summary
+    ══════════════════════════════════════════ */
+    .about-services {
+      padding: 0 52px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .services-divider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+    .services-divider::before,
+    .services-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .services-divider span {
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .service-item {
+      background: var(--bg);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: background .3s var(--ease);
+      text-decoration: none;
+    }
+    .service-item:hover { background: var(--bg-light); }
+
+    .service-item__number {
+      font-size: 0.55rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--tango);
+    }
+    .service-item__name {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .service-item__price {
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    .page-footer {
+      padding: 20px 52px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: .62rem;
+      font-weight: 300;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .page-footer a {
+      color: inherit;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .page-footer a:hover { color: var(--text); }
+
+    /* ── ANIMACIONES ─────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ──────────────────────── */
+    @media (max-width: 960px) {
+      .about-bio {
+        grid-template-columns: 1fr;
+        padding: 64px 28px;
+        gap: 52px;
+      }
+      .bio-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-right: 0;
+        padding-bottom: 48px;
+      }
+      .bio-stats { flex-direction: row; flex-wrap: wrap; gap: 28px 48px; }
+      .bio-text { padding-left: 0; }
+
+      .hero-content { padding: 0 28px 60px; flex-direction: column; align-items: flex-start; gap: 16px; }
+      .hero-meta { text-align: left; }
+
+      .site-header { padding: 20px 28px; }
+      .about-services { padding: 0 28px 64px; }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .site-nav ul { gap: 20px; }
+      .page-footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (max-width: 400px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body class="about-page inner-page is-loading">
 
-  <!-- MENÚ -->
-  <header class="menu">
-    <nav>
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Navegación principal">
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/#books">Books</a></li>
-        <li><a href="/about">Sobre mí</a></li>
+        <li><a href="/about" aria-current="page">Sobre mí</a></li>
         <li><a href="/contact">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
+  <main>
 
-  <!-- ================================================== -->
-  <!-- ABOUT                                              -->
-  <!-- ================================================== -->
-  <section class="about-section">
-    <div class="about-container">
+    <!-- ════════════════════════════════════════
+         HERO — foto full screen
+    ════════════════════════════════════════ -->
+    <section class="about-hero" aria-label="Eduardo Bezmalinovic — Bezma Studio">
 
-      <div class="about-image">
-        <img src="/images/yo.jpg" alt="Eduardo Bezmalinovic">
-        <!-- ↑ reemplaza "yo.jpg" con tu foto de perfil       -->
-        <!-- Formato ideal: vertical, mín 600×800px           -->
+      <!--
+        Foto de perfil / retrato tuyo, full screen.
+        Reemplaza /images/yo.jpg por la imagen que prefieras.
+        Ideal: vertical u horizontal, mín 1440×900px, foco en el rostro/cuerpo.
+      -->
+      <img class="about-hero__img"
+           src="/images/yo.jpg"
+           alt="Eduardo Bezmalinovic — Fotógrafo de moda y retrato, Bezma Studio Santiago"
+           loading="eager">
+
+      <div class="hero-content">
+        <h1 class="hero-name">
+          Eduardo<br>
+          <em>Bezmalinovic</em>
+        </h1>
+        <div class="hero-meta">
+          <span class="hero-meta__role">Fotógrafo · Santiago de Chile</span>
+          <span class="hero-meta__location">Moda &amp; Retrato</span>
+        </div>
       </div>
 
-      <div class="about-text">
-        <h2>Sobre mí</h2>
-
-        <!-- ↓ Edita libremente el texto de presentación -->
-        <p>
-          Hola, soy Eduardo Bezmalinovic, fotógrafo y retocador chileno. 
-          Mi enfoque es la fotografía de moda, a partir de esta 
-          motivación, busco que en cada sesión te sientas parte de una revista, 
-          teniendo como resultado imágenes con estilo y elegancia.
-        </p>
-        <p>
-          Creo fielmente en que todos tenemos algo para entregar a la cámara, simplemente algunas
-           personas necesitan menos ayuda que otras, dejame ayudarte a mostrar tu mejor versión.
-        </p>
-        <!-- ↑ Puedes agregar más párrafos <p> aquí -->
+      <!-- Indicador scroll -->
+      <div class="scroll-hint" aria-hidden="true">
+        <div class="scroll-hint__line"></div>
+        <span class="scroll-hint__label">Scroll</span>
       </div>
 
-    </div>
-  </section>
+    </section>
 
+
+    <!-- ════════════════════════════════════════
+         BIO — texto asimétrico
+    ════════════════════════════════════════ -->
+    <section class="about-bio" aria-labelledby="bio-heading">
+
+      <!-- SIDEBAR — datos clave -->
+      <aside class="bio-sidebar">
+
+        <p class="bio-index">Sobre mí</p>
+
+        <div class="bio-stats">
+
+          <div class="stat">
+            <p class="stat__label">Especialidad</p>
+            <p class="stat__value">Moda &amp; Retrato editorial</p>
+          </div>
+
+          <div class="stat">
+            <p class="stat__label">Estudio</p>
+            <p class="stat__value">Providencia,<br>Santiago de Chile</p>
+          </div>
+
+          <div class="stat">
+            <p class="stat__label">Contacto</p>
+            <p class="stat__value">edosalvo.fotos<br>@gmail.com</p>
+          </div>
+
+          <div class="stat">
+            <p class="stat__label">Instagram</p>
+            <p class="stat__value">@Edo.Bezma_PH</p>
+          </div>
+
+        </div>
+
+        <a href="/contact" class="sidebar-cta">
+          <span>Agendar sesión</span>
+          <span class="sidebar-cta__arrow">→</span>
+        </a>
+
+      </aside>
+
+      <!-- TEXTO PRINCIPAL -->
+      <div class="bio-text">
+
+        <!-- ════════════════════════════════════
+             ▶ VERSIÓN ACTIVA: REWRITE PROFESIONAL
+             ════════════════════════════════════
+             Para volver al texto original, borra este bloque
+             y descomenta el bloque "VERSIÓN ORIGINAL" al final.
+        ════════════════════════════════════ -->
+        <h2 class="bio-heading" id="bio-heading">
+          La cámara revela<br>
+          <em>lo que ya estaba ahí.</em>
+        </h2>
+
+        <div class="bio-body">
+          <p>
+            Soy <strong>Eduardo Bezmalinovic</strong>, fotógrafo y retocador chileno
+            con base en Santiago. Mi trabajo vive en la intersección entre
+            la <strong>fotografía de moda</strong> y el retrato editorial:
+            sesiones donde cada imagen tiene la intención, la luz y la composición
+            de una página de revista.
+          </p>
+
+          <div class="bio-pullquote">
+            <p>
+              "Creo que todos tenemos algo para entregar a la cámara.
+              Mi trabajo es encontrar ese algo y encuadrarlo."
+            </p>
+          </div>
+
+          <p>
+            Cada sesión empieza mucho antes de llegar al estudio.
+            Trabajo el <strong>concepto, el moodboard y la dirección de poses</strong>
+            para que el día de la sesión puedas relajarte y simplemente
+            ser tú — en tu versión más estilizada.
+            El resultado no es solo una foto: es una narrativa visual
+            construida a tu medida.
+          </p>
+
+          <p>
+            Con base en <strong>Providencia, Santiago</strong>,
+            colaboro con modelos, marcas y personas que quieren
+            imágenes con carácter. Si tienes una idea, un proyecto
+            o simplemente quieres explorar, escríbeme.
+          </p>
+        </div>
+
+
+        <!-- ════════════════════════════════════
+             ▶ VERSIÓN ORIGINAL — descomenta para activar
+             ════════════════════════════════════
+        <h2 class="bio-heading" id="bio-heading">
+          Sobre <em>mí</em>
+        </h2>
+
+        <div class="bio-body">
+          <p>
+            Hola, soy Eduardo Bezmalinovic, fotógrafo y retocador chileno.
+            Mi enfoque es la fotografía de moda, a partir de esta motivación,
+            busco que en cada sesión te sientas parte de una revista,
+            teniendo como resultado imágenes con estilo y elegancia.
+          </p>
+          <p>
+            Creo fielmente en que todos tenemos algo para entregar a la cámara,
+            simplemente algunas personas necesitan menos ayuda que otras.
+            Déjame ayudarte a mostrar tu mejor versión.
+          </p>
+        </div>
+        ════════════════════════════════════ -->
+
+      </div><!-- /bio-text -->
+
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         SERVICIOS — resumen visual
+    ════════════════════════════════════════ -->
+    <section class="about-services" aria-label="Servicios fotográficos Bezma Studio">
+
+      <div class="services-divider">
+        <span>Sesiones disponibles</span>
+      </div>
+
+      <div class="services-grid" role="list">
+
+        <a href="/#books" class="service-item" role="listitem"
+           aria-label="Polas — Sesión rápida $40.000 CLP">
+          <span class="service-item__number">01</span>
+          <span class="service-item__name">Polas</span>
+          <span class="service-item__price">desde $40.000 CLP</span>
+        </a>
+
+        <a href="/#books" class="service-item" role="listitem"
+           aria-label="Book Essential — $95.000 CLP">
+          <span class="service-item__number">02</span>
+          <span class="service-item__name">Book Essential</span>
+          <span class="service-item__price">desde $95.000 CLP</span>
+        </a>
+
+        <a href="/#books" class="service-item" role="listitem"
+           aria-label="Book Editorial — desde $135.000 CLP">
+          <span class="service-item__number">03</span>
+          <span class="service-item__name">Book Editorial</span>
+          <span class="service-item__price">desde $135.000 CLP</span>
+        </a>
+
+        <a href="/#books" class="service-item" role="listitem"
+           aria-label="Book Editorial Plus — desde $300.000 CLP">
+          <span class="service-item__number">04</span>
+          <span class="service-item__name">Editorial Plus</span>
+          <span class="service-item__price">desde $300.000 CLP</span>
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
 
   <!-- FOOTER -->
-  <footer class="footer-line">
-    <div class="footer-content">
-      <a href="mailto:BezmaStudio@gmail.com">BezmaStudio@gmail.com</a>
-      <span>Santiago de Chile, Providencia</span>
-      <a href="https://www.instagram.com/edo.bezma_ph/" target="_blank" rel="noopener">IG: @Edo.Bezma_PH</a>
-    </div>
+  <footer class="page-footer" itemscope itemtype="https://schema.org/LocalBusiness">
+    <span>© Bezma Studio <span id="year"></span></span>
+    <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+      <span itemprop="addressLocality">Santiago</span> ·
+      <span itemprop="addressRegion">Providencia</span>
+    </span>
+    <a href="https://www.instagram.com/edo.bezma_ph/"
+       target="_blank" rel="noopener" itemprop="sameAs">@Edo.Bezma_PH</a>
   </footer>
-
 
   <!-- JS -->
   <script src="/js/menu.js"></script>
   <script src="/js/pagetransitions.js"></script>
+
+  <script>
+    /* AÑO */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* CURSOR */
+    const cur  = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cur.style.left = mx + 'px';
+      cur.style.top  = my + 'px';
+    });
+    (function tick() {
+      rx += (mx - rx) * .11;
+      ry += (my - ry) * .11;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(tick);
+    })();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        ring.style.width  = '50px';
+        ring.style.height = '50px';
+        ring.style.borderColor = 'rgba(217,79,43,0.7)';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.style.width  = '30px';
+        ring.style.height = '30px';
+        ring.style.borderColor = 'rgba(217,79,43,0.4)';
+      });
+    });
+
+    /* ANIMACIÓN ON SCROLL — activa elementos cuando entran en viewport */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.15 });
+
+    /* Pausa animaciones hasta que sean visibles */
+    document.querySelectorAll(
+      '.bio-index, .stat, .sidebar-cta, .bio-heading, .bio-body p, .bio-pullquote'
+    ).forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  </script>
 
 </body>
 </html>

@@ -49,7 +49,19 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; -webkit-font-smoothing: antialiased; cursor: none; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; -webkit-font-smoothing: antialiased; }
+
+    /* Cursor personalizado y overflow solo en desktop */
+    @media (hover: hover) and (pointer: fine) {
+      body { cursor: none; overflow-x: hidden; }
+      a, button { cursor: none; }
+      .cursor, .cursor-ring { display: block; }
+    }
+
+    /* Ocultar cursor en móvil/touch */
+    @media (hover: none), (pointer: coarse) {
+      .cursor, .cursor-ring { display: none !important; }
+    }
 
     .cursor      { position: fixed; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); }
     .cursor-ring { position: fixed; width: 30px; height: 30px; border: 1px solid rgba(74,124,89,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .22s var(--ease), height .22s var(--ease), border-color .22s; }
@@ -227,7 +239,17 @@
       <div class="gallery-mobile" id="gallery-mobile" role="list"><div class="gallery-mobile-track" id="mobile-track"></div></div>
       <div class="carousel-dots" id="carousel-dots" role="tablist"></div>
     </section>
-
+ <!-- MÓVIL — carrusel parallax -->
+      <div class="gallery-mobile" id="gallery-mobile" role="list" aria-label="Galería móvil Segunda Piel">
+        <div class="gallery-mobile-track" id="mobile-track">
+          
+          <!--
+            Los slides se generan automáticamente por JS
+            desde las imágenes del gallery-grid.
+            No necesitas editarlos manualmente.
+          -->
+        </div>
+      </div>
     <nav class="editorial-nav" aria-label="Navegar entre editoriales">
       <a href="/onirico" class="editorial-nav__item editorial-nav__item--prev"><span class="nav-direction">Anterior</span><span class="nav-title">Onírico</span><span class="nav-arrow">←</span></a>
       <a href="/segunda-piel" class="editorial-nav__item editorial-nav__item--next"><span class="nav-direction">Siguiente</span><span class="nav-title">Segunda Piel</span><span class="nav-arrow">→</span></a>

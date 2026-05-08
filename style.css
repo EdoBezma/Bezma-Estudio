@@ -395,11 +395,7 @@ body.about-page {
     overflow-y: auto;
     height: auto;
   }
-  @media (hover: none) and (pointer: coarse) {
-  #cursor, #cursor-ring {
-    display: none;
-  }
-}
+  
 
   .about-section {
     height: auto;
@@ -713,4 +709,10 @@ footer.footer-line a:hover {
 .modal.is-open .modal-content {
   transform: translateY(0);
   opacity: 1;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  #cursor, #cursor-ring {
+    display: none;
+  }
 }

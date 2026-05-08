@@ -284,21 +284,23 @@
       list-style: none;
     }
 
-    #book-modal #modal-description ul li {
-      font-family: var(--h-sans);
-      font-size: 0.82rem;
-      font-weight: 300;
-      line-height: 1;
-      color: var(--h-text-mid);
-      padding: 10px 0 10px 0;
-      border-bottom: 1px solid var(--h-border);
-    }
+#book-modal #modal-description ul li {
+  font-family: var(--h-sans);
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--h-text-mid);
+  padding: 10px 0 10px 1.2em;
+  border-bottom: 1px solid var(--h-border);
+  position: relative;
+}
 
-    #book-modal #modal-description ul li::before {
-      content: '—';
-      color: var(--h-tango);
-      margin-right: 10px;
-    }
+#book-modal #modal-description ul li::before {
+  content: '—';
+  color: var(--h-tango);
+  position: absolute;
+  left: 0;
+}
 
     #book-modal .close {
       color: var(--h-text-muted);

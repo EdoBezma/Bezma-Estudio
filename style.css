@@ -28,6 +28,9 @@
 html {
   scroll-behavior: smooth;
 }
+html, body, a, button, [role="button"] {
+  cursor: none;
+}
 
 body {
   font-family: var(--font-body);
@@ -197,7 +200,7 @@ section {
   aspect-ratio: 9 / 16; /* proporción vertical 1080×1920 */
   object-fit: cover;
   transition: transform var(--transition-base);
-  cursor: pointer;
+  cursor: none;
   display: block;
 }
 
@@ -263,11 +266,11 @@ section {
   position: relative;
   overflow: hidden;
   width: 100%;
-  cursor: grab;
+  cursor: none;
 }
 
 .editorial-wrapper:active {
-  cursor: grabbing;
+  cursor: none;
 }
 
 .editorial-track {
@@ -392,6 +395,11 @@ body.about-page {
     overflow-y: auto;
     height: auto;
   }
+  @media (hover: none) and (pointer: coarse) {
+  #cursor, #cursor-ring {
+    display: none;
+  }
+}
 
   .about-section {
     height: auto;

@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://bezmastudio.com/dune">
   <meta property="og:title" content="Dune | Bezma Studio">
   <meta property="og:description" content="Editorial fotográfica de moda. Bezma Studio, Santiago de Chile.">
-  <meta property="og:image" content="https://bezmastudio.com/images/editorial-1/foto1.jpg">
+  <meta property="og:image" content="https://bezmastudio.com/images/editorial-4">
   <meta property="og:locale" content="es_CL">
   <meta property="og:site_name" content="Bezma Studio">
   <script type="application/ld+json">
@@ -26,11 +26,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+
   <style>
-    /* ══════════════════════════════════════════
-       TOKENS — Dune
-       Arena oscura + ocre cálido
-    ══════════════════════════════════════════ */
+    /* ══════════════════════════════════════════════════
+       TOKENS — Segunda Piel
+       ──────────────────────────────────────────────────
+       GUÍA COLORES POR EDITORIAL:
+       Segunda Piel   → --bg:#0b0f1a  --accent:#b02a1e  --border: rgba(180,190,220,…)
+       Dune           → --bg:#100d08  --accent:#c8903a  --border: rgba(210,195,160,…)
+       Onírico        → --bg:#0d0b14  --accent:#7c5cbf  --border: rgba(190,180,220,…)
+       Desarraigo Urb → --bg:#090e09  --accent:#4a7c59  --border: rgba(160,190,160,…)
+    ══════════════════════════════════════════════════ */
     :root {
       --bg:          #100d08;
       --bg-mid:      #1a1508;
@@ -51,11 +57,18 @@
     html { font-size: 16px; scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; -webkit-font-smoothing: antialiased; cursor: none; overflow-x: hidden; }
 
-    .cursor      { position: fixed; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); }
+    /* ── CURSOR ──────────────────────────────────── */
+    .cursor      { position: fixed; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: opacity .2s; }
     .cursor-ring { position: fixed; width: 30px; height: 30px; border: 1px solid rgba(200,144,58,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .22s var(--ease), height .22s var(--ease), border-color .22s; }
     a, button { cursor: none; }
 
-    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 28px 52px; display: flex; align-items: center; justify-content: space-between; }
+    /* ── HEADER — sin filtro, completamente limpio ── */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 28px 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      /* Sin background ni filtro: el header flota sobre la imagen sin alterarla */
+    }
     .site-nav ul { list-style: none; display: flex; gap: 44px; }
     .site-nav a { font-size: 0.68rem; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; color: var(--text-mid); transition: color .25s var(--ease); padding-bottom: 3px; }
     .site-nav a:hover { color: var(--text); }
@@ -64,29 +77,110 @@
     .back-btn__arrow { transition: transform .25s var(--ease); display: inline-block; }
     .back-btn:hover .back-btn__arrow { transform: translateX(-4px); }
 
-    .editorial-hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; transform: scale(1.04); transition: transform 14s var(--ease); }
+    /* ══════════════════════════════════════════════════
+       HERO — imagen sin filtro, sin alteración
+    ══════════════════════════════════════════════════ */
+    .editorial-hero {
+      position: relative;
+      height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    /* La imagen NO tiene filter — se ve exactamente como el fotógrafo la editó */
+    .hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%;
+      transform: scale(1.04);
+      transition: transform 14s var(--ease);
+    }
     .editorial-hero:hover .hero-bg { transform: scale(1.0); }
-    .editorial-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 45%, rgba(16,13,8,0.65) 75%, var(--bg) 100%); pointer-events: none; }
-    .hero-content { position: relative; z-index: 2; padding: 0 52px 60px; display: flex; flex-direction: column; gap: 32px; }
+
+    /* Gradiente SOLO en la parte inferior para que el texto sea legible */
+    .editorial-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        transparent 45%,
+        rgba(242,237,228,0.55) 75%,
+        var(--bg) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Contenido hero — título + créditos */
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 52px 60px;
+      display: flex; flex-direction: column; gap: 32px;
+    }
+
+    /* Título */
     .editorial-title-wrap { opacity: 0; animation: fadeUp 1s var(--ease) .1s forwards; }
     .editorial-eyebrow { display: flex; align-items: center; gap: 12px; font-size: 0.6rem; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
     .editorial-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--accent); }
     .editorial-title { font-family: var(--serif); font-size: clamp(3.8rem, 8vw, 9rem); font-weight: 300; font-style: italic; line-height: 0.92; letter-spacing: -0.02em; color: var(--text); }
 
-    .hero-credits { display: flex; gap: 0; border-top: 1px solid rgba(242,237,228,0.15); padding-top: 20px; opacity: 0; animation: fadeUp 1s var(--ease) .3s forwards; }
-    .credit-hero { flex: 1; padding-right: 28px; }
-    .credit-hero + .credit-hero { padding-left: 28px; border-left: 1px solid rgba(242,237,228,0.12); }
-    .credit-hero__label { display: block; font-size: 0.52rem; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,237,228,0.38); margin-bottom: 5px; }
-    .credit-hero__value { font-family: var(--serif); font-size: 0.92rem; font-weight: 300; font-style: italic; color: var(--text); line-height: 1.3; }
+    /* ══════════════════════════════════════════════════
+       CRÉDITOS EN HERO — modelo, marca, styling, maquillaje
+       Reemplaza cada .credit-hero__value con los datos reales
+    ══════════════════════════════════════════════════ */
+    .hero-credits {
+      display: flex; gap: 0;
+      border-top: 1px solid rgba(210,195,160,0.28);
+      padding-top: 20px;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease) .3s forwards;
+    }
 
-    .scroll-hint { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeUp .8s var(--ease) .9s forwards; transition: opacity .4s ease; text-decoration: none; }
+    .credit-hero {
+      flex: 1;
+      padding-right: 28px;
+    }
+    .credit-hero + .credit-hero {
+      padding-left: 28px;
+      border-left: 1px solid rgba(210,195,160,0.28);
+    }
+    .credit-hero__label {
+      display: block;
+      font-size: 0.52rem; font-weight: 400; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(210,195,160,0.38);
+      margin-bottom: 5px;
+    }
+    .credit-hero__value {
+      font-family: var(--serif); font-size: 0.92rem;
+      font-weight: 300; font-style: italic; color: var(--text);
+      line-height: 1.3;
+    }
+
+    /* ══════════════════════════════════════════════════
+       SCROLL HINT — clickeable, desaparece al hacer scroll,
+       oculto en móvil
+    ══════════════════════════════════════════════════ */
+    .scroll-hint {
+      position: absolute; bottom: 28px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0; animation: fadeUp .8s var(--ease) .9s forwards;
+      transition: opacity .4s ease;
+      text-decoration: none;
+    }
     .scroll-hint.hidden { opacity: 0 !important; pointer-events: none; }
     .scroll-hint__line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollPulse 2.2s ease-in-out infinite; }
     .scroll-hint__label { font-size: 0.52rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* Oculto en móvil */
     @media (max-width: 768px) { .scroll-hint { display: none; } }
 
-    .editorial-concept { display: grid; grid-template-columns: 1fr 2fr; gap: 0; padding: 88px 52px; max-width: 1300px; margin: 0 auto; }
+    /* ════════════════════════════════════════════
+       CONCEPTO — texto editorial
+    ════════════════════════════════════════════ */
+    .editorial-concept {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 0;
+      padding: 88px 52px; max-width: 1300px; margin: 0 auto;
+    }
     .concept-sidebar { padding-right: 64px; border-right: 1px solid var(--border); padding-top: 4px; }
     .concept-index { font-size: 0.58rem; font-weight: 400; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
     .concept-index::before { content: ''; width: 18px; height: 1px; background: var(--accent); }
@@ -98,45 +192,199 @@
     .concept-text p + p { margin-top: 20px; }
     .concept-text strong { color: var(--text); font-weight: 400; }
 
+    /* ════════════════════════════════════════════
+       GALERÍA DESKTOP — grid asimétrico
+       Sin números sobre las fotos
+    ════════════════════════════════════════════ */
     .editorial-gallery { padding: 0 52px 100px; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 22vw; gap: 6px; }
-    .gallery-item { overflow: hidden; position: relative; background: var(--bg-mid); cursor: none; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 22vw;
+      gap: 6px;
+    }
+
+    .gallery-item {
+      overflow: hidden; position: relative;
+      background: var(--bg-mid);
+      cursor: none;
+    }
     .item--full   { grid-column: span 12; }
     .item--wide   { grid-column: span 8; }
     .item--half   { grid-column: span 6; }
     .item--third  { grid-column: span 4; }
     .item--narrow { grid-column: span 3; }
     .item--tall   { grid-row: span 2; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform .8s var(--ease); }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+      transition: transform .8s var(--ease);
+    }
     .gallery-item:hover img { transform: scale(1.04); }
-    .gallery-item::after { content: ''; position: absolute; inset: 0; background: rgba(16,13,8,0); transition: background .4s var(--ease); pointer-events: none; }
+
+    /* Overlay tenue al hover — sin número */
+    .gallery-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(16,13,8,0);
+      transition: background .4s var(--ease);
+      pointer-events: none;
+    }
     .gallery-item:hover::after { background: rgba(16,13,8,0.15); }
-    .gallery-item .open-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0.6); width: 44px; height: 44px; border: 1px solid rgba(242,237,228,0.6); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--text); opacity: 0; transition: opacity .3s var(--ease), transform .3s var(--ease); z-index: 2; pointer-events: none; }
+
+    /* Icono de apertura — aparece en hover */
+    .gallery-item .open-icon {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.6);
+      width: 44px; height: 44px;
+      border: 1px solid rgba(210,195,160,0.6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: var(--text);
+      opacity: 0;
+      transition: opacity .3s var(--ease), transform .3s var(--ease);
+      z-index: 2;
+      pointer-events: none;
+    }
     .gallery-item:hover .open-icon { opacity: 1; transform: translate(-50%,-50%) scale(1); }
 
-    .gallery-mobile { display: none; overflow-x: scroll; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    /* ════════════════════════════════════════════
+       GALERÍA MÓVIL — carrusel con efecto parallax
+       La web se mueve, la imagen permanece fija
+    ════════════════════════════════════════════ */
+    .gallery-mobile {
+      display: none;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 4px;
+      padding: 0;
+      cursor: grab;
+    }
     .gallery-mobile::-webkit-scrollbar { display: none; }
-    .gallery-mobile-track { display: flex; width: max-content; gap: 4px; }
-    .mobile-slide { width: 85vw; height: 115vw; flex-shrink: 0; scroll-snap-align: center; position: relative; overflow: hidden; }
-    .mobile-slide img { position: absolute; width: 115%; height: 100%; object-fit: cover; object-position: center; top: 0; left: -7.5%; will-change: transform; transition: transform .05s linear; }
-    .carousel-dots { display: none; justify-content: center; gap: 6px; padding: 16px 0 40px; }
-    .carousel-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--text-muted); transition: background .3s, transform .3s; }
-    .carousel-dot.active { background: var(--accent); transform: scale(1.4); }
-    @media (max-width: 768px) { .gallery-grid { display: none; } .gallery-mobile { display: flex; } .carousel-dots { display: flex; } .editorial-gallery { padding: 0 0 60px; } }
+    .gallery-mobile:active { cursor: grabbing; }
 
-    .lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(8,11,18,0.97); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .35s var(--ease); }
+    .gallery-mobile-track {
+      display: flex;
+      width: max-content;
+    }
+
+    /* Cada slide del carrusel */
+    .mobile-slide {
+      width: 85vw;
+      height: 115vw; /* proporción vertical — foto completa */
+      flex-shrink: 0;
+      scroll-snap-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Efecto parallax: la imagen es más grande que el contenedor
+       y se mueve con JS cuando el slide entra en viewport */
+    .mobile-slide img {
+      position: absolute;
+      width: 115%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      top: 0;
+      left: -7.5%;
+      will-change: transform;
+      transition: transform .05s linear;
+    }
+
+    /* Indicador de posición (dots) */
+    .carousel-dots {
+      display: none;
+      justify-content: center;
+      gap: 6px;
+      padding: 16px 0 40px;
+    }
+    .carousel-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      transition: background .3s, transform .3s;
+    }
+    .carousel-dot.active { background: var(--accent); transform: scale(1.4); }
+
+    @media (max-width: 768px) {
+      .gallery-grid    { display: none; }
+      .gallery-mobile  { display: flex; }
+      .carousel-dots   { display: flex; }
+      .editorial-gallery { padding: 0 0 60px; }
+    }
+
+    /* ════════════════════════════════════════════
+       LIGHTBOX — foto grande con prev/next
+    ════════════════════════════════════════════ */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(200,144,58,0.12);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s var(--ease);
+    }
     .lightbox.open { opacity: 1; pointer-events: all; }
-    .lightbox__img-wrap { position: relative; max-width: 88vw; max-height: 88vh; display: flex; align-items: center; justify-content: center; }
-    .lightbox__img { max-width: 88vw; max-height: 88vh; object-fit: contain; display: block; opacity: 0; transform: scale(0.97); transition: opacity .3s var(--ease), transform .3s var(--ease); }
+
+    .lightbox__img-wrap {
+      position: relative;
+      max-width: 88vw;
+      max-height: 88vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .lightbox__img {
+      max-width: 88vw;
+      max-height: 88vh;
+      object-fit: contain;
+      display: block;
+      opacity: 0;
+      transform: scale(0.97);
+      transition: opacity .3s var(--ease), transform .3s var(--ease);
+    }
     .lightbox.open .lightbox__img { opacity: 1; transform: scale(1); }
-    .lightbox__btn { position: fixed; top: 50%; transform: translateY(-50%); background: transparent; border: 1px solid var(--border-hover); color: var(--text); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all .25s var(--ease); cursor: none; }
+
+    /* Botones prev / next */
+    .lightbox__btn {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      background: transparent; border: 1px solid var(--border-hover);
+      color: var(--text); width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; transition: all .25s var(--ease);
+      cursor: none;
+    }
     .lightbox__btn:hover { border-color: var(--accent); color: var(--accent); }
     .lightbox__prev { left: 28px; }
     .lightbox__next { right: 28px; }
-    .lightbox__close { position: fixed; top: 28px; right: 28px; background: transparent; border: 1px solid var(--border-hover); color: var(--text); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all .25s var(--ease); cursor: none; }
-    .lightbox__close:hover { border-color: var(--accent); color: var(--accent); }
-    .lightbox__counter { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); font-size: 0.62rem; font-weight: 300; letter-spacing: 0.2em; color: var(--text-muted); }
 
+    /* Botón cerrar */
+    .lightbox__close {
+      position: fixed; top: 28px; right: 28px;
+      background: transparent; border: 1px solid var(--border-hover);
+      color: var(--text); width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; transition: all .25s var(--ease);
+      cursor: none;
+    }
+    .lightbox__close:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Contador */
+    .lightbox__counter {
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.62rem; font-weight: 300; letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    /* ════════════════════════════════════════════
+       NAV ENTRE EDITORIALES
+    ════════════════════════════════════════════ */
     .editorial-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border-top: 1px solid var(--border); }
     .editorial-nav__item { background: var(--bg); padding: 48px 52px; text-decoration: none; display: flex; flex-direction: column; gap: 12px; transition: background .3s var(--ease); }
     .editorial-nav__item:hover { background: var(--bg-light); }
@@ -148,30 +396,60 @@
     .editorial-nav__item--next { text-align: right; }
     .editorial-nav__item--next:hover .nav-arrow { transform: translateX(6px); }
 
+    /* ── FOOTER ──────────────────────────────── */
     .page-footer { padding: 20px 52px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; font-size: .62rem; font-weight: 300; letter-spacing: .15em; text-transform: uppercase; color: var(--text-muted); }
     .page-footer a { color: inherit; text-decoration: none; transition: color .2s; }
     .page-footer a:hover { color: var(--text); }
 
+    /* ── ANIMACIONES ─────────────────────────── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-    @media (max-width: 1024px) { .editorial-concept { grid-template-columns: 1fr; padding: 64px 28px; gap: 40px; } .concept-sidebar { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 40px; } .concept-body { padding-left: 0; } }
-    @media (max-width: 768px) { .site-header { padding: 20px 24px; } .site-nav ul { gap: 20px; } .hero-content { padding: 0 24px 48px; gap: 24px; } .hero-credits { flex-wrap: wrap; gap: 16px; } .credit-hero { flex: 1 1 40%; } .credit-hero + .credit-hero { border-left: none; padding-left: 0; } .editorial-nav__item { padding: 32px 24px; } .page-footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px 24px; } .lightbox__prev { left: 12px; } .lightbox__next { right: 12px; } }
-    @media (max-width: 480px) { .credit-hero { flex: 1 1 100%; } }
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 1024px) {
+      .editorial-concept { grid-template-columns: 1fr; padding: 64px 28px; gap: 40px; }
+      .concept-sidebar { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 40px; }
+      .concept-body { padding-left: 0; }
+    }
+    @media (max-width: 768px) {
+      .site-header { padding: 20px 24px; }
+      .site-nav ul { gap: 20px; }
+      .hero-content { padding: 0 24px 48px; gap: 24px; }
+      .hero-credits { flex-wrap: wrap; gap: 16px; }
+      .credit-hero { flex: 1 1 40%; }
+      .credit-hero + .credit-hero { border-left: none; padding-left: 0; }
+      .editorial-nav__item { padding: 32px 24px; }
+      .page-footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px 24px; }
+      .lightbox__btn { width: 40px; height: 40px; }
+      .lightbox__prev { left: 12px; }
+      .lightbox__next { right: 12px; }
+    }
+    @media (max-width: 480px) {
+      .hero-credits { gap: 12px; }
+      .credit-hero { flex: 1 1 100%; }
+    }
   </style>
 </head>
+
 <body class="editorial-page inner-page is-loading">
+
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursor-ring"></div>
 
+  <!-- ════════════════════════════════════════
+       LIGHTBOX
+  ════════════════════════════════════════ -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visor de imágenes">
     <button class="lightbox__close" id="lb-close" aria-label="Cerrar">✕</button>
     <button class="lightbox__btn lightbox__prev" id="lb-prev" aria-label="Anterior">←</button>
-    <div class="lightbox__img-wrap"><img class="lightbox__img" id="lb-img" src="" alt=""></div>
+    <div class="lightbox__img-wrap">
+      <img class="lightbox__img" id="lb-img" src="" alt="">
+    </div>
     <button class="lightbox__btn lightbox__next" id="lb-next" aria-label="Siguiente">→</button>
     <p class="lightbox__counter" id="lb-counter"></p>
   </div>
 
+  <!-- HEADER -->
   <header class="site-header">
     <nav class="site-nav" aria-label="Navegación principal">
       <ul>
@@ -181,118 +459,367 @@
         <li><a href="/contact">Contacto</a></li>
       </ul>
     </nav>
-    <a href="/#editorial" class="back-btn"><span class="back-btn__arrow">←</span><span>Editoriales</span></a>
+    <a href="/#editorial" class="back-btn" aria-label="Volver a editoriales">
+      <span class="back-btn__arrow">←</span>
+      <span>Editoriales</span>
+    </a>
   </header>
 
   <main>
-    <section class="editorial-hero" aria-label="Dune — editorial fotográfica" id="hero">
-      <img class="hero-bg" src="/images/editorial-1/foto1.jpg" alt="Dune — Editorial fotográfica de moda, Bezma Studio Santiago" loading="eager">
+
+    <!-- ════════════════════════════════════════
+         HERO
+         ─────────────────────────────────────
+         • La imagen NO tiene filter
+         • Créditos visibles en el hero
+         • Scroll hint clickeable
+    ════════════════════════════════════════ -->
+    <section class="editorial-hero" aria-label="Segunda Piel — editorial fotográfica" id="hero">
+
+      <!--
+        Imagen de portada — sin filtro, exactamente como fue editada.
+        Reemplaza /segunda-piel/foto1.jpg con tu imagen real.
+      -->
+      <img class="hero-bg"
+           src="/images/editorial-1/foto1.jpg"
+           alt="Dune — Editorial fotográfica de moda, Bezma Studio Santiago"
+           loading="eager">
+
       <div class="hero-content">
+
         <div class="editorial-title-wrap">
           <p class="editorial-eyebrow">Bezma Studio · Editorial</p>
           <h1 class="editorial-title">Dune</h1>
         </div>
-        <div class="hero-credits" role="list">
-          <div class="credit-hero" role="listitem"><span class="credit-hero__label">Modelo</span><span class="credit-hero__value">@marina.catalan.n</span></div><!-- EDITAR -->
-          <div class="credit-hero" role="listitem"><span class="credit-hero__label">Marca</span><span class="credit-hero__value">@lamujerbarbuda.cl</span></div><!-- EDITAR -->
-          <div class="credit-hero" role="listitem"><span class="credit-hero__label">Maquillaje</span><span class="credit-hero__value">@lesliereynamakeup</span></div><!-- EDITAR -->
-          <div class="credit-hero" role="listitem"><span class="credit-hero__label">Styling</span><span class="credit-hero__value">@Felippa.gaytan @kris.isa.93</span></div><!-- EDITAR -->
-          <div class="credit-hero" role="listitem"><span class="credit-hero__label">Dirección</span><span class="credit-hero__value">@Felippa.gaytan @kris.isa.93</span></div>
+
+        <!-- ════════════════════════════════════
+             CRÉDITOS EN HERO
+             Editar cada .credit-hero__value
+        ════════════════════════════════════ -->
+        <div class="hero-credits" role="list" aria-label="Créditos de la editorial">
+
+          <div class="credit-hero" role="listitem">
+            <span class="credit-hero__label">Modelo</span>
+            <span class="credit-hero__value">@Marina.catalan</span><!-- EDITAR -->
+          </div>
+
+          <div class="credit-hero" role="listitem">
+            <span class="credit-hero__label">Marca</span>
+            <span class="credit-hero__value">@Lamujerbarbuda.cl</span><!-- EDITAR -->
+          </div>
+
+          <div class="credit-hero" role="listitem">
+            <span class="credit-hero__label">Maquillaje</span>
+            <span class="credit-hero__value">@Lesliereynamakeup</span><!-- EDITAR -->
+          </div>
+
+          <div class="credit-hero" role="listitem">
+            <span class="credit-hero__label">Styling</span>
+            <span class="credit-hero__value">@Lamujerbarbuda.cl</span><!-- EDITAR -->
+          </div>
+
+          <div class="credit-hero" role="listitem">
+            <span class="credit-hero__label">Dirección</span>
+            <span class="credit-hero__value">@Lamujerbarbuda.cl</span>
+          </div>
+
         </div>
       </div>
+
+      <!-- Scroll hint — clickeable, lleva a #concepto, oculto en móvil -->
       <a class="scroll-hint" id="scroll-hint" href="#concepto" aria-label="Scroll hacia abajo">
         <div class="scroll-hint__line"></div>
         <span class="scroll-hint__label">Scroll</span>
       </a>
+
     </section>
 
+
+    <!-- ════════════════════════════════════════
+         CONCEPTO
+    ════════════════════════════════════════ -->
     <section class="editorial-concept" id="concepto" aria-labelledby="concept-heading">
       <div class="concept-sidebar">
         <p class="concept-index">Concepto</p>
         <p class="concept-number" aria-hidden="true">01</p>
       </div>
       <div class="concept-body">
-        <h2 class="concept-heading" id="concept-heading">Dune<br><em>inspiración</em></h2>
+        <h2 class="concept-heading" id="concept-heading">
+        </h2>
         <!-- EDITAR: concepto de la editorial -->
         <div class="concept-text">
-          <p><strong>Dune</strong> nació de la obsesión por la textura. El desierto y sus tonalidades cambiantes: La moda aquí no compite con el paisaje — lo habita.</p>
+             <h2 class="concept-heading" id="concept-heading"><strong>La naturaleza</strong><br><em>como inspiración.</em></h2>
+          <p>
+       <p><strong>Dune</strong> nació de la obsesión por la textura. El desierto y sus tonalidades cambiantes: La moda aquí no compite con el paisaje — lo habita.</p>
           <p>Una exploración cromática en tonos y teturas que recuerdan el desierto, donde cada joya se siente como un tesoro perdido.</p>
+          </p>
         </div>
       </div>
     </section>
 
+
+    <!-- ════════════════════════════════════════
+         GALERÍA
+         ─────────────────────────────────────
+         • Desktop: grid asimétrico, sin números
+         • Móvil: carrusel con parallax
+         
+         Para agregar fotos:
+         1. Agrega el bloque en .gallery-grid (desktop)
+         2. Agrega el mismo src en .gallery-mobile-track (móvil)
+         3. Usa las clases: item--full / item--wide /
+            item--half / item--third / item--tall
+    ════════════════════════════════════════ -->
     <section class="editorial-gallery" aria-label="Galería Dune">
+
+      <!-- DESKTOP GRID -->
       <div class="gallery-grid" id="gallery-grid">
-        <div class="gallery-item item--full"><img src="/images/editorial-1/foto1.jpg" alt="Dune — Bezma Studio" loading="lazy"><span class="open-icon" aria-hidden="true">↗</span></div>
-        <div class="gallery-item item--half"><img src="/images/editorial-1/foto2.jpg" alt="Dune — Bezma Studio" loading="lazy"><span class="open-icon" aria-hidden="true">↗</span></div>
-        <div class="gallery-item item--half"><img src="/images/editorial-1/foto3.jpg" alt="Dune — Bezma Studio" loading="lazy"><span class="open-icon" aria-hidden="true">↗</span></div>
-  
-      <div class="gallery-mobile" id="gallery-mobile" role="list"><div class="gallery-mobile-track" id="mobile-track"></div></div>
-      <div class="carousel-dots" id="carousel-dots" role="tablist"></div>
+
+        <div class="gallery-item item--full">
+          <img src="/images/editorial-1/foto1.jpg" alt="Dune — Bezma Studio" loading="lazy">
+          <span class="open-icon" aria-hidden="true">↗</span>
+        </div>
+
+        <div class="gallery-item item--half">
+          <img src="/images/editorial-1/foto2.jpg" alt="Dune — Bezma Studio" loading="lazy">
+          <span class="open-icon" aria-hidden="true">↗</span>
+        </div>
+        <div class="gallery-item item--half">
+          <img src="/images/editorial-1/foto3.jpg" alt="Dune — Bezma Studio" loading="lazy">
+          <span class="open-icon" aria-hidden="true">↗</span>
+        </div>
+
+        <!--
+          Para agregar más fotos, copia un bloque gallery-item
+          y agrega la imagen correspondiente.
+          No olvides agregar el mismo src al carrusel móvil abajo.
+        -->
+
+      </div>
+
+      <!-- MÓVIL — carrusel parallax -->
+      <div class="gallery-mobile" id="gallery-mobile" role="list" aria-label="Galería móvil Dune">
+        <div class="gallery-mobile-track" id="mobile-track">
+          
+          <!--
+            Los slides se generan automáticamente por JS
+            desde las imágenes del gallery-grid.
+            No necesitas editarlos manualmente.
+          -->
+        </div>
+      </div>
+
+      <!-- Dots indicadores (móvil) -->
+      <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Posición en el carrusel"></div>
+
     </section>
 
+
+    <!-- ════════════════════════════════════════
+         NAV ENTRE EDITORIALES
+         Editar href y nav-title según el orden
+    ════════════════════════════════════════ -->
     <nav class="editorial-nav" aria-label="Navegar entre editoriales">
-      <a href="/segunda-piel" class="editorial-nav__item editorial-nav__item--prev"><span class="nav-direction">Anterior</span><span class="nav-title">Segunda Piel</span><span class="nav-arrow">←</span></a>
-      <a href="/onirico" class="editorial-nav__item editorial-nav__item--next"><span class="nav-direction">Siguiente</span><span class="nav-title">Onírico</span><span class="nav-arrow">→</span></a>
+      <a href="/segunda-piel" class="editorial-nav__item editorial-nav__item--prev" aria-label="Anterior: Segunda Piel">
+        <span class="nav-direction">Anterior</span>
+        <span class="nav-title">Segunda Piel</span>
+        <span class="nav-arrow">←</span>
+      </a>
+      <a href="/onirico" class="editorial-nav__item editorial-nav__item--next" aria-label="Siguiente: Onírico">
+        <span class="nav-direction">Siguiente</span>
+        <span class="nav-title">Onírico</span>
+        <span class="nav-arrow">→</span>
+      </a>
     </nav>
+
   </main>
 
-  <footer class="page-footer">
+  <footer class="page-footer" itemscope itemtype="https://schema.org/LocalBusiness">
     <span>© Bezma Studio <span id="year"></span></span>
     <span>Santiago · Providencia</span>
-    <a href="https://www.instagram.com/edo.bezma_ph/" target="_blank" rel="noopener">@Edo.Bezma_PH</a>
+    <a href="https://www.instagram.com/edo.bezma_ph/" target="_blank" rel="noopener" itemprop="sameAs">@Edo.Bezma_PH</a>
   </footer>
 
   <script src="/js/menu.js"></script>
   <script src="/js/pagetransitions.js"></script>
+
   <script>
-  (function(){
+  (function() {
+    /* ── AÑO ─────────────────────────────────── */
     document.getElementById('year').textContent = new Date().getFullYear();
-    const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-    let mx=0,my=0,rx=0,ry=0;
-    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-    (function tick(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
-    document.querySelectorAll('a,button').forEach(el=>{
-      el.addEventListener('mouseenter',()=>{ring.style.width='50px';ring.style.height='50px';ring.style.borderColor='rgba(200,144,58,0.7)';});
-      el.addEventListener('mouseleave',()=>{ring.style.width='30px';ring.style.height='30px';ring.style.borderColor='rgba(200,144,58,0.4)';});
+
+    /* ── CURSOR ──────────────────────────────── */
+    const cur = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx=0, my=0, rx=0, ry=0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cur.style.left = mx+'px'; cur.style.top = my+'px';
     });
-    const sh=document.getElementById('scroll-hint');
-    let scrolled=false;
-    window.addEventListener('scroll',()=>{
-      if(window.scrollY>60&&!scrolled){scrolled=true;sh.classList.add('hidden');}
-      else if(window.scrollY<=10&&scrolled){scrolled=false;sh.classList.remove('hidden');}
-    },{passive:true});
-    const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lb-img'),lbPrev=document.getElementById('lb-prev'),lbNext=document.getElementById('lb-next'),lbClose=document.getElementById('lb-close'),lbCounter=document.getElementById('lb-counter');
-    const items=Array.from(document.querySelectorAll('#gallery-grid .gallery-item'));
-    const imgs=items.map(i=>({src:i.querySelector('img').src,alt:i.querySelector('img').alt}));
-    let cur2=0;
-    function openLb(i){cur2=i;lbImg.src=imgs[i].src;lbImg.alt=imgs[i].alt;lbCounter.textContent=(i+1)+' / '+imgs.length;lb.classList.add('open');document.body.style.overflow='hidden';}
-    function closeLb(){lb.classList.remove('open');document.body.style.overflow='';setTimeout(()=>{lbImg.src='';},350);}
-    function go(dir){cur2=(cur2+dir+imgs.length)%imgs.length;lbImg.style.opacity='0';setTimeout(()=>{lbImg.src=imgs[cur2].src;lbCounter.textContent=(cur2+1)+' / '+imgs.length;lbImg.style.opacity='1';},150);}
-    items.forEach((item,i)=>item.addEventListener('click',()=>openLb(i)));
-    lbClose.addEventListener('click',closeLb);
-    lbPrev.addEventListener('click',()=>go(-1));
-    lbNext.addEventListener('click',()=>go(1));
-    document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1);});
-    lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
-    const track=document.getElementById('mobile-track'),dots=document.getElementById('carousel-dots'),mob=document.getElementById('gallery-mobile');
-    imgs.forEach((img,i)=>{
-      const s=document.createElement('div');s.className='mobile-slide';s.setAttribute('role','listitem');
-      const im=document.createElement('img');im.src=img.src;im.alt=img.alt;im.loading='lazy';
-      s.appendChild(im);s.addEventListener('click',()=>openLb(i));track.appendChild(s);
-      const d=document.createElement('div');d.className='carousel-dot'+(i===0?' active':'');dots.appendChild(d);
+    (function tick(){
+      rx += (mx-rx)*.11; ry += (my-ry)*.11;
+      ring.style.left = rx+'px'; ring.style.top = ry+'px';
+      requestAnimationFrame(tick);
+    })();
+    document.querySelectorAll('a,button').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.width='50px'; ring.style.height='50px'; ring.style.borderColor='rgba(176,42,30,0.7)'; });
+      el.addEventListener('mouseleave', () => { ring.style.width='30px'; ring.style.height='30px'; ring.style.borderColor='rgba(176,42,30,0.4)'; });
     });
-    mob.addEventListener('scroll',()=>{
-      track.querySelectorAll('.mobile-slide').forEach(s=>{
-        const rect=s.getBoundingClientRect(),cLeft=mob.getBoundingClientRect().left,cW=mob.offsetWidth;
-        s.querySelector('img').style.transform=`translateX(${((rect.left-cLeft)/cW)*12}%)`;
+
+    /* ── SCROLL HINT — desaparece al hacer scroll ── */
+    const scrollHint = document.getElementById('scroll-hint');
+    let scrolled = false;
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60 && !scrolled) {
+        scrolled = true;
+        scrollHint.classList.add('hidden');
+      } else if (window.scrollY <= 10 && scrolled) {
+        scrolled = false;
+        scrollHint.classList.remove('hidden');
+      }
+    }, { passive: true });
+
+    /* ── LIGHTBOX ────────────────────────────── */
+    const lb       = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lb-img');
+    const lbPrev   = document.getElementById('lb-prev');
+    const lbNext   = document.getElementById('lb-next');
+    const lbClose  = document.getElementById('lb-close');
+    const lbCounter= document.getElementById('lb-counter');
+
+    // Recopilar todas las imágenes de la galería (excluye foto hero)
+    const galleryItems = Array.from(document.querySelectorAll('#gallery-grid .gallery-item'));
+    const images = galleryItems.map(item => ({
+      src: item.querySelector('img').src,
+      alt: item.querySelector('img').alt
+    }));
+    let currentIndex = 0;
+
+    function openLightbox(idx) {
+      currentIndex = idx;
+      lbImg.src = images[currentIndex].src;
+      lbImg.alt = images[currentIndex].alt;
+      lbCounter.textContent = (currentIndex + 1) + ' / ' + images.length;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      // Pequeño delay para limpiar src después de la transición
+      setTimeout(() => { lbImg.src = ''; }, 350);
+    }
+    function prevImg() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      lbImg.style.opacity = '0';
+      setTimeout(() => {
+        lbImg.src = images[currentIndex].src;
+        lbCounter.textContent = (currentIndex + 1) + ' / ' + images.length;
+        lbImg.style.opacity = '1';
+      }, 150);
+    }
+    function nextImg() {
+      currentIndex = (currentIndex + 1) % images.length;
+      lbImg.style.opacity = '0';
+      setTimeout(() => {
+        lbImg.src = images[currentIndex].src;
+        lbCounter.textContent = (currentIndex + 1) + ' / ' + images.length;
+        lbImg.style.opacity = '1';
+      }, 150);
+    }
+
+    galleryItems.forEach((item, i) => {
+      item.addEventListener('click', () => openLightbox(i));
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', prevImg);
+    lbNext.addEventListener('click', nextImg);
+
+    // Cerrar con Escape, navegar con flechas
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')      closeLightbox();
+      if (e.key === 'ArrowLeft')   prevImg();
+      if (e.key === 'ArrowRight')  nextImg();
+    });
+
+    // Cerrar al hacer click en el fondo
+    lb.addEventListener('click', e => {
+      if (e.target === lb) closeLightbox();
+    });
+
+    /* ── CARRUSEL MÓVIL — parallax ───────────── */
+    const mobileTrack = document.getElementById('mobile-track');
+    const dotsContainer = document.getElementById('carousel-dots');
+
+    // Generar slides desde las imágenes del grid desktop
+    images.forEach((img, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'mobile-slide';
+      slide.setAttribute('role', 'listitem');
+      const image = document.createElement('img');
+      image.src = img.src;
+      image.alt = img.alt;
+      image.loading = 'lazy';
+      slide.appendChild(image);
+      // Click en móvil también abre lightbox
+      slide.addEventListener('click', () => openLightbox(i));
+      mobileTrack.appendChild(slide);
+
+      // Dot
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', 'Foto ' + (i+1));
+      dotsContainer.appendChild(dot);
+    });
+
+    // Parallax en scroll del carrusel
+    const galleryMobile = document.getElementById('gallery-mobile');
+    galleryMobile.addEventListener('scroll', () => {
+      const slides = mobileTrack.querySelectorAll('.mobile-slide');
+      const containerLeft = galleryMobile.getBoundingClientRect().left;
+      const containerWidth = galleryMobile.offsetWidth;
+
+      slides.forEach((slide, i) => {
+        const rect = slide.getBoundingClientRect();
+        const relativePos = (rect.left - containerLeft) / containerWidth;
+        const parallaxOffset = relativePos * 12; // Intensidad del parallax
+        const img = slide.querySelector('img');
+        img.style.transform = `translateX(${parallaxOffset}%)`;
       });
-      const activeIdx=Math.round(mob.scrollLeft/(mob.offsetWidth*0.85+4));
-      dots.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===activeIdx));
-    },{passive:true});
-    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';obs.unobserve(e.target);}});},{threshold:0.1});
-    document.querySelectorAll('.gallery-item,.concept-body,.concept-sidebar').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(16px)';el.style.transition='opacity .6s var(--ease), transform .6s var(--ease)';obs.observe(el);});
+
+      // Actualizar dots
+      const scrollLeft = galleryMobile.scrollLeft;
+      const slideWidth = galleryMobile.offsetWidth * 0.85 + 4;
+      const activeIdx = Math.round(scrollLeft / slideWidth);
+      dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === activeIdx);
+      });
+    }, { passive: true });
+
+    /* ── SCROLL REVEAL ───────────────────────── */
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.gallery-item, .credit-item, .concept-body, .concept-sidebar').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = 'opacity .6s var(--ease), transform .6s var(--ease)';
+      revealObs.observe(el);
+    });
+
   })();
   </script>
+
 </body>
 </html>

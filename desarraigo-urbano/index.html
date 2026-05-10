@@ -294,7 +294,7 @@
       top: 0;
       left: -7.5%;
       will-change: transform;
-      transition: transform .3s cubic-bezier(0.25, 0.1, 0.25, 1);
+      transition: none;
     }
 
     /* Indicador de posición (dots) */
@@ -812,19 +812,21 @@
       dotsContainer.appendChild(dot);
     });
 
-    // Parallax en scroll del carrusel
+    // Parallax en scroll del carrusel — throttled con rAF para evitar jitter
     const galleryMobile = document.getElementById('gallery-mobile');
-    galleryMobile.addEventListener('scroll', () => {
+    let rafPending = false;
+
+    function updateParallax() {
+      rafPending = false;
       const slides = mobileTrack.querySelectorAll('.mobile-slide');
       const containerLeft = galleryMobile.getBoundingClientRect().left;
       const containerWidth = galleryMobile.offsetWidth;
 
-      slides.forEach((slide, i) => {
+      slides.forEach((slide) => {
         const rect = slide.getBoundingClientRect();
         const relativePos = (rect.left - containerLeft) / containerWidth;
-        const parallaxOffset = relativePos * 12; // Intensidad del parallax
-        const img = slide.querySelector('img');
-        img.style.transform = `translateX(${parallaxOffset}%)`;
+        const parallaxOffset = relativePos * 12;
+        slide.querySelector('img').style.transform = `translateX(${parallaxOffset}%)`;
       });
 
       // Actualizar dots
@@ -834,6 +836,13 @@
       dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === activeIdx);
       });
+    }
+
+    galleryMobile.addEventListener('scroll', () => {
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(updateParallax);
+      }
     }, { passive: true });
 
     /* ── SCROLL REVEAL ───────────────────────── */

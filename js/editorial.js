@@ -22,32 +22,53 @@ if (wrapper && track) {
   });
 
   /* ── Helper ── */
-  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+  const isMobile = () => window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
   /* ════════════════════════════════════════════
-     TOUCH — estado para swipe móvil
+     TOUCH — swipe táctil
   ════════════════════════════════════════════ */
+  let touchStartX   = 0;
   let touchLastX    = 0;
+  let touchStartY   = 0;
   let touchVelocity = 0;
   let isTouching    = false;
+  let isHorizSwipe  = null; // null = aún no decidido, true/false = bloqueado
   let momentumId    = null;
 
   wrapper.addEventListener('touchstart', e => {
-    if (!isMobile()) return;
-
     isTouching    = true;
-    touchLastX    = e.touches[0].clientX;
+    isHorizSwipe  = null;
+    touchStartX   = e.touches[0].clientX;
+    touchStartY   = e.touches[0].clientY;
+    touchLastX    = touchStartX;
     touchVelocity = 0;
 
-    if (momentumId) cancelAnimationFrame(momentumId);
+    if (momentumId) {
+      cancelAnimationFrame(momentumId);
+      momentumId = null;
+    }
   }, { passive: true });
 
   wrapper.addEventListener('touchmove', e => {
-    if (!isMobile() || !isTouching) return;
+    if (!isTouching) return;
 
-    const x     = e.touches[0].clientX;
-    const delta = x - touchLastX;
+    const x    = e.touches[0].clientX;
+    const y    = e.touches[0].clientY;
+    const dx   = x - touchStartX;
+    const dy   = y - touchStartY;
 
+    /* Primera vez: decidir si es gesto horizontal o vertical */
+    if (isHorizSwipe === null) {
+      isHorizSwipe = Math.abs(dx) > Math.abs(dy);
+    }
+
+    /* Si es scroll vertical, no interceptar */
+    if (!isHorizSwipe) return;
+
+    /* Es horizontal: bloquear scroll vertical de la página */
+    e.preventDefault();
+
+    const delta   = x - touchLastX;
     touchVelocity = delta;
     touchLastX    = x;
 
@@ -58,17 +79,20 @@ if (wrapper && track) {
     if (offsetX >= 0)      offsetX -= limit;
 
     track.style.transform = `translate3d(${offsetX}px, 0, 0)`;
-  }, { passive: true });
+
+  }, { passive: false }); /* passive:false para poder llamar preventDefault */
 
   wrapper.addEventListener('touchend', () => {
-    if (!isMobile()) return;
-    isTouching = false;
+    if (!isTouching) return;
+    isTouching   = false;
+    isHorizSwipe = null;
 
     let vel = touchVelocity * 0.85;
 
     function momentum() {
-      if (Math.abs(vel) < 0.25) {
-        speed = -baseSpeed;
+      if (Math.abs(vel) < 0.3) {
+        /* Inercia terminada — retomar auto-avance */
+        speed = baseSpeed;
         return;
       }
 
@@ -88,7 +112,7 @@ if (wrapper && track) {
 
 
   /* ════════════════════════════════════════════
-     MOUSE (desktop) — igual que antes
+     MOUSE (desktop)
   ════════════════════════════════════════════ */
   wrapper.addEventListener('mouseenter', () => isHovering = true);
   wrapper.addEventListener('mouseleave', () => isHovering = false);
@@ -99,6 +123,7 @@ if (wrapper && track) {
      LOOP DE ANIMACIÓN
   ════════════════════════════════════════════ */
   function animateCarousel() {
+    /* Si el usuario está arrastrando, el touchmove mueve el track */
     if (!isTouching) {
       const rect      = wrapper.getBoundingClientRect();
       let targetSpeed = baseSpeed;

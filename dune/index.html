@@ -219,11 +219,11 @@
 
     .gallery-item img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
+      object-fit: contain; object-position: center;
       display: block;
       transition: transform .8s var(--ease);
     }
-    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item:hover img { transform: scale(1.03); }
 
     /* Overlay tenue al hover — sin número */
     .gallery-item::after {
@@ -283,16 +283,15 @@
       overflow: hidden;
     }
 
-    /* Efecto parallax: la imagen es más grande que el contenedor
-       y se mueve con JS cuando el slide entra en viewport */
+    /* Imagen completa sin recorte en móvil */
     .mobile-slide img {
       position: absolute;
-      width: 115%;
+      width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center;
       top: 0;
-      left: -7.5%;
+      left: 0;
       will-change: transform;
       transition: none;
     }
@@ -816,16 +815,6 @@
 
     function updateParallax() {
       rafPending = false;
-      const slides = mobileTrack.querySelectorAll('.mobile-slide');
-      const containerLeft = galleryMobile.getBoundingClientRect().left;
-      const containerWidth = galleryMobile.offsetWidth;
-
-      slides.forEach((slide) => {
-        const rect = slide.getBoundingClientRect();
-        const relativePos = (rect.left - containerLeft) / containerWidth;
-        const parallaxOffset = relativePos * 12;
-        slide.querySelector('img').style.transform = `translateX(${parallaxOffset}%)`;
-      });
 
       // Actualizar dots
       const scrollLeft = galleryMobile.scrollLeft;

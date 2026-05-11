@@ -233,22 +233,6 @@
     }
     .gallery-item:hover::after { background: rgba(11,15,26,0.15); }
 
-    /* Icono de apertura — aparece en hover */
-    .gallery-item .open-icon {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) scale(0.6);
-      width: 44px; height: 44px;
-      border: 1px solid rgba(237,238,245,0.6);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; color: var(--text);
-      opacity: 0;
-      transition: opacity .3s var(--ease), transform .3s var(--ease);
-      z-index: 2;
-      pointer-events: none;
-    }
-    .gallery-item:hover .open-icon { opacity: 1; transform: translate(-50%,-50%) scale(1); }
-
     /* ════════════════════════════════════════════
        GALERÍA MÓVIL — carrusel con efecto parallax
        La web se mueve, la imagen permanece fija
@@ -590,46 +574,36 @@
 
         <div class="gallery-item item--full">
           <img src="/images/editorial-4/foto1.jpg" alt="Segunda Piel — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
 
         <div class="gallery-item item--half">
           <img src="/images/editorial-4/foto2.jpg" alt="Segunda Piel — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
         <div class="gallery-item item--half">
           <img src="/images/editorial-4/foto3.jpg" alt="Segunda Piel — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
 
         <div class="gallery-item item--wide">
           <img src="/images/editorial-4/foto4.jpg" alt="Segunda Piel — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
         <div class="gallery-item item--third item--tall">
           <img src="/images/editorial-4/foto5.jpg" alt="Segunda Piel — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
         <div class="gallery-item item--third">
           <img src="/images/editorial-4/foto6.jpg" alt="Segunda Piel — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
         <div class="gallery-item item--wide">
           <img src="/images/editorial-4/foto7.jpg" alt="Segunda Piel — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
 
         <div class="gallery-item item--third">
           <img src="/images/editorial-4/foto8.jpg" alt="Segunda Piel — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
         <div class="gallery-item item--third">
           <img src="/images/editorial-4/foto9.jpg" alt="Segunda Piel — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
         <div class="gallery-item item--third">
           <img src="/images/editorial-4/foto10.jpg" alt="Segunda Piel — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
 
         <!--

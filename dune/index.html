@@ -239,20 +239,6 @@
     .gallery-item {
       position: relative;
     }
-    .gallery-item .open-icon {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) scale(0.6);
-      width: 44px; height: 44px;
-      border: 1px solid rgba(210,195,160,0.6);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; color: var(--text);
-      opacity: 0;
-      transition: opacity .3s var(--ease), transform .3s var(--ease);
-      z-index: 2;
-      pointer-events: none;
-    }
-    .gallery-item:hover .open-icon { opacity: 1; transform: translate(-50%,-50%) scale(1); }
 
     /* ════════════════════════════════════════════
        GALERÍA MÓVIL — carrusel con efecto parallax
@@ -593,33 +579,26 @@
 
         <div class="gallery-item item--full">
           <img src="/images/editorial-1/foto1.jpg" alt="Dune — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
 
         <div class="gallery-item item--half">
           <img src="/images/editorial-1/foto2.jpg" alt="Dune — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
         <div class="gallery-item item--half">
           <img src="/images/editorial-1/foto3.jpg" alt="Dune — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
                 <div class="gallery-item item--full">
           <img src="/images/editorial-1/foto4.jpg" alt="Dune — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
 
         <div class="gallery-item item--half">
           <img src="/images/editorial-1/foto5.jpg" alt="Dune — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
         <div class="gallery-item item--half">
           <img src="/images/editorial-1/foto6.jpg" alt="Dune — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
          <div class="gallery-item item--full">
           <img src="/images/editorial-1/foto7.jpg" alt="Dune — Bezma Studio" loading="lazy">
-          <span class="open-icon" aria-hidden="true">↗</span>
         </div>
 
         <!--
